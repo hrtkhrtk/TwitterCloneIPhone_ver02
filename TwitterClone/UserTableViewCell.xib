@@ -70,6 +70,13 @@
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="followButton" destination="NQy-2h-yo6" id="1e3-aL-3a3"/>
+                <outlet property="iconImageView" destination="cq1-eW-Etm" id="RHK-ht-rg0"/>
+                <outlet property="idForSearchTextLabel" destination="kqG-tx-Iax" id="PgD-Uk-LeN"/>
+                <outlet property="nicknameTextLabel" destination="yEm-DO-UDf" id="zVI-qa-frA"/>
+                <outlet property="selfIntroductionTextLabel" destination="gXi-dT-GNP" id="C7W-NB-sHx"/>
+            </connections>
             <point key="canvasLocation" x="131.8840579710145" y="155.35714285714286"/>
         </tableViewCell>
     </objects>

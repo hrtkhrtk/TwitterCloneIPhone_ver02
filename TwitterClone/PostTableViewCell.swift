@@ -9,6 +9,13 @@
 import UIKit
 
 class PostTableViewCell: UITableViewCell {
+    
+    @IBOutlet weak var iconImageView: UIImageView!
+    @IBOutlet weak var nicknameTextLabel: UILabel!
+    @IBOutlet weak var createdAtTextLabel: UILabel!
+    @IBOutlet weak var postTextLabel: UILabel!
+    @IBOutlet weak var favoriteButton: UIButton!
+    @IBOutlet weak var favoritesNumTextLabel: UILabel!
 
     override func awakeFromNib() {
         super.awakeFromNib()

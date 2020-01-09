@@ -7,8 +7,22 @@
 //
 
 import UIKit
+import Firebase
 
 class UserDetailViewController: UIViewController {
+    
+    @IBOutlet weak var iconImageView: UIImageView!
+    @IBOutlet weak var backgroundImageView: UIImageView!
+    @IBOutlet weak var nicknameTextLabel: UILabel!
+    @IBOutlet weak var idForSearchTextLabel: UILabel!
+    @IBOutlet weak var selfIntroductionTextLabel: UILabel!
+    @IBOutlet weak var createdAtTextLabel: UILabel!
+    @IBOutlet weak var followingsNumTextLabel: UILabel!
+    @IBOutlet weak var followersNumTextLabel: UILabel!
+    @IBOutlet weak var tableView: UITableView!
+    
+    @IBAction func handleFollowButton(_ sender: Any) {
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -16,6 +30,16 @@ class UserDetailViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        // currentUserがnilならログインしていない
+        if Auth.auth().currentUser == nil {
+            // ログインしていないときの処理
+            let loginViewController = self.storyboard?.instantiateViewController(withIdentifier: "Login")
+            self.present(loginViewController!, animated: true, completion: nil)
+        }
+    }
 
     /*
     // MARK: - Navigation

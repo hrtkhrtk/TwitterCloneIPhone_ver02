@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class ViewController: UIViewController {
     @IBOutlet weak var menuButton: UIBarButtonItem!
@@ -24,6 +25,17 @@ class ViewController: UIViewController {
     let sidemenuViewController = SidemenuViewController()
     private var isShownSidemenu: Bool {
         return sidemenuViewController.parent == self
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        // currentUserがnilならログインしていない
+        if Auth.auth().currentUser == nil {
+            // ログインしていないときの処理
+            let loginViewController = self.storyboard?.instantiateViewController(withIdentifier: "Login")
+            self.present(loginViewController!, animated: true, completion: nil)
+        }
     }
     
     override func viewDidLoad() {

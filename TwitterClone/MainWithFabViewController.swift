@@ -9,7 +9,13 @@
 import UIKit
 
 class MainWithFabViewController: UIViewController {
-
+    
+    @IBOutlet weak var searchTextField: UITextField!
+    @IBOutlet weak var tableView: UITableView!
+    
+    @IBAction func handleSearchButton(_ sender: Any) {
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 

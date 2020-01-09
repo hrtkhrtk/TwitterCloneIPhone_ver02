@@ -9,6 +9,16 @@
 import UIKit
 
 class RegisteringViewController: UIViewController {
+    
+    @IBOutlet weak var selfIntroductionTextField: UITextField!
+    @IBOutlet weak var iconImageAsButton: UIButton!
+    @IBOutlet weak var backgroundImageAsButton: UIButton!
+    
+    @IBAction func handleRegisterButton(_ sender: Any) {
+    }
+    
+    @IBAction func handleSkipButton(_ sender: Any) {
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()

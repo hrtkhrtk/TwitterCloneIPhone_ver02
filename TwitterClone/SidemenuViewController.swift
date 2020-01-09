@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 protocol SidemenuViewControllerDelegate: class {
     func sidemenuViewControllerDidRequestShowing(_ sidemenuViewController: SidemenuViewController, contentAvailability: Bool, animated: Bool)
@@ -65,6 +66,17 @@ class SidemenuViewController: UIViewController {
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(backgroundTapped(sender:)))
         tapGestureRecognizer.delegate = self
         view.addGestureRecognizer(tapGestureRecognizer)
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        // currentUserがnilならログインしていない
+        if Auth.auth().currentUser == nil {
+            // ログインしていないときの処理
+            let loginViewController = self.storyboard?.instantiateViewController(withIdentifier: "Login")
+            self.present(loginViewController!, animated: true, completion: nil)
+        }
     }
     
     @objc private func backgroundTapped(sender: UITapGestureRecognizer) {

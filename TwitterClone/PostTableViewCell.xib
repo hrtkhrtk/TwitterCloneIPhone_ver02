@@ -77,6 +77,14 @@
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="createdAtTextLabel" destination="4Zc-sV-ewc" id="Jsp-zA-nmR"/>
+                <outlet property="favoriteButton" destination="Xw7-hf-RT0" id="WAL-ZT-TfX"/>
+                <outlet property="favoritesNumTextLabel" destination="wge-7o-Uem" id="hVd-s7-nlk"/>
+                <outlet property="iconImageView" destination="PxJ-WZ-GN5" id="88I-De-oSt"/>
+                <outlet property="nicknameTextLabel" destination="2DR-iQ-Svn" id="sdV-Yu-yCV"/>
+                <outlet property="postTextLabel" destination="yGS-Hm-vGu" id="RH6-yR-UwA"/>
+            </connections>
             <point key="canvasLocation" x="131.8840579710145" y="154.6875"/>
         </tableViewCell>
     </objects>

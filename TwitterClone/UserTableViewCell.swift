@@ -9,6 +9,12 @@
 import UIKit
 
 class UserTableViewCell: UITableViewCell {
+    
+    @IBOutlet weak var iconImageView: UIImageView!
+    @IBOutlet weak var nicknameTextLabel: UILabel!
+    @IBOutlet weak var idForSearchTextLabel: UILabel!
+    @IBOutlet weak var selfIntroductionTextLabel: UILabel!
+    @IBOutlet weak var followButton: UIButton!
 
     override func awakeFromNib() {
         super.awakeFromNib()

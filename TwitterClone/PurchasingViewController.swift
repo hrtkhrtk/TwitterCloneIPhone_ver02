@@ -7,8 +7,16 @@
 //
 
 import UIKit
+import Firebase
 
 class PurchasingViewController: UIViewController {
+    
+    @IBOutlet weak var availableToTextLabel: UILabel!
+    @IBOutlet weak var datePicker: UIDatePicker!
+    @IBOutlet weak var priceTextLabel: UILabel!
+    
+    @IBAction func handlePurchaseButton(_ sender: Any) {
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -16,6 +24,16 @@ class PurchasingViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        // currentUserがnilならログインしていない
+        if Auth.auth().currentUser == nil {
+            // ログインしていないときの処理
+            let loginViewController = self.storyboard?.instantiateViewController(withIdentifier: "Login")
+            self.present(loginViewController!, animated: true, completion: nil)
+        }
+    }
 
     /*
     // MARK: - Navigation

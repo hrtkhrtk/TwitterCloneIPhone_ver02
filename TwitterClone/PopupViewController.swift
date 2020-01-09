@@ -9,6 +9,12 @@
 import UIKit
 
 class PopupViewController: UIViewController {
+    
+    @IBAction func handleToSettingButton(_ sender: Any) {
+    }
+    
+    @IBAction func handleToPurchasingButton(_ sender: Any) {
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
