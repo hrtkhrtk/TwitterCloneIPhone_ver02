@@ -27,6 +27,9 @@
 		5357951123C711E40075F035 /* PostTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5357950F23C711E40075F035 /* PostTableViewCell.xib */; };
 		5357951423C712750075F035 /* UserTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5357951223C712750075F035 /* UserTableViewCell.swift */; };
 		5357951523C712750075F035 /* UserTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5357951323C712750075F035 /* UserTableViewCell.xib */; };
+		5357951923C73DF60075F035 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5357951823C73DF60075F035 /* GoogleService-Info.plist */; };
+		5357951B23C74FB10075F035 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5357951A23C74FB10075F035 /* MainViewController.swift */; };
+		5357951D23C754CF0075F035 /* SidemenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5357951C23C754CF0075F035 /* SidemenuViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -51,6 +54,9 @@
 		5357950F23C711E40075F035 /* PostTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PostTableViewCell.xib; sourceTree = "<group>"; };
 		5357951223C712750075F035 /* UserTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTableViewCell.swift; sourceTree = "<group>"; };
 		5357951323C712750075F035 /* UserTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserTableViewCell.xib; sourceTree = "<group>"; };
+		5357951823C73DF60075F035 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		5357951A23C74FB10075F035 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		5357951C23C754CF0075F035 /* SidemenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SidemenuViewController.swift; sourceTree = "<group>"; };
 		836EA506E7D8EAC791EA8403 /* Pods-TwitterClone.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TwitterClone.release.xcconfig"; path = "Target Support Files/Pods-TwitterClone/Pods-TwitterClone.release.xcconfig"; sourceTree = "<group>"; };
 		AC551B22421CF860BFB6724A /* Pods_TwitterClone.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TwitterClone.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C94933BAC83A3D25E14397D8 /* Pods-TwitterClone.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TwitterClone.debug.xcconfig"; path = "Target Support Files/Pods-TwitterClone/Pods-TwitterClone.debug.xcconfig"; sourceTree = "<group>"; };
@@ -98,6 +104,7 @@
 		535794E523C640090075F035 /* TwitterClone */ = {
 			isa = PBXGroup;
 			children = (
+				5357951823C73DF60075F035 /* GoogleService-Info.plist */,
 				535794E623C640090075F035 /* AppDelegate.swift */,
 				535794E823C640090075F035 /* ViewController.swift */,
 				535794EA23C640090075F035 /* Main.storyboard */,
@@ -118,6 +125,8 @@
 				5357950F23C711E40075F035 /* PostTableViewCell.xib */,
 				5357951223C712750075F035 /* UserTableViewCell.swift */,
 				5357951323C712750075F035 /* UserTableViewCell.xib */,
+				5357951A23C74FB10075F035 /* MainViewController.swift */,
+				5357951C23C754CF0075F035 /* SidemenuViewController.swift */,
 			);
 			path = TwitterClone;
 			sourceTree = "<group>";
@@ -195,6 +204,7 @@
 				535794EE23C6400F0075F035 /* Assets.xcassets in Resources */,
 				5357951523C712750075F035 /* UserTableViewCell.xib in Resources */,
 				535794EC23C640090075F035 /* Main.storyboard in Resources */,
+				5357951923C73DF60075F035 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -247,6 +257,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5357951D23C754CF0075F035 /* SidemenuViewController.swift in Sources */,
 				535794FB23C662300075F035 /* LoginViewController.swift in Sources */,
 				5357950323C664BF0075F035 /* PurchasingViewController.swift in Sources */,
 				5357951423C712750075F035 /* UserTableViewCell.swift in Sources */,
@@ -256,6 +267,7 @@
 				535794FF23C664740075F035 /* RegisteringViewController.swift in Sources */,
 				5357950923C6652D0075F035 /* SendingPostViewController.swift in Sources */,
 				5357950723C665110075F035 /* UsersListViewController.swift in Sources */,
+				5357951B23C74FB10075F035 /* MainViewController.swift in Sources */,
 				5357950523C664E60075F035 /* PurchasingCompleteViewController.swift in Sources */,
 				5357950D23C665770075F035 /* PolicyViewController.swift in Sources */,
 				535794E723C640090075F035 /* AppDelegate.swift in Sources */,
