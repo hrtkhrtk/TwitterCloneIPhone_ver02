@@ -31,6 +31,7 @@
 		5357951B23C74FB10075F035 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5357951A23C74FB10075F035 /* MainViewController.swift */; };
 		5357951D23C754CF0075F035 /* SidemenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5357951C23C754CF0075F035 /* SidemenuViewController.swift */; };
 		5357952323C76EB10075F035 /* PopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5357952223C76EB10075F035 /* PopupViewController.swift */; };
+		5357954323C7AAC60075F035 /* MainWithFabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5357954223C7AAC60075F035 /* MainWithFabViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -59,6 +60,7 @@
 		5357951A23C74FB10075F035 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		5357951C23C754CF0075F035 /* SidemenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SidemenuViewController.swift; sourceTree = "<group>"; };
 		5357952223C76EB10075F035 /* PopupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupViewController.swift; sourceTree = "<group>"; };
+		5357954223C7AAC60075F035 /* MainWithFabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainWithFabViewController.swift; sourceTree = "<group>"; };
 		836EA506E7D8EAC791EA8403 /* Pods-TwitterClone.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TwitterClone.release.xcconfig"; path = "Target Support Files/Pods-TwitterClone/Pods-TwitterClone.release.xcconfig"; sourceTree = "<group>"; };
 		AC551B22421CF860BFB6724A /* Pods_TwitterClone.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TwitterClone.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C94933BAC83A3D25E14397D8 /* Pods-TwitterClone.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TwitterClone.debug.xcconfig"; path = "Target Support Files/Pods-TwitterClone/Pods-TwitterClone.debug.xcconfig"; sourceTree = "<group>"; };
@@ -130,6 +132,7 @@
 				5357951A23C74FB10075F035 /* MainViewController.swift */,
 				5357951C23C754CF0075F035 /* SidemenuViewController.swift */,
 				5357952223C76EB10075F035 /* PopupViewController.swift */,
+				5357954223C7AAC60075F035 /* MainWithFabViewController.swift */,
 			);
 			path = TwitterClone;
 			sourceTree = "<group>";
@@ -272,6 +275,7 @@
 				535794E923C640090075F035 /* ViewController.swift in Sources */,
 				535794FD23C664430075F035 /* SignupViewController.swift in Sources */,
 				535794FF23C664740075F035 /* RegisteringViewController.swift in Sources */,
+				5357954323C7AAC60075F035 /* MainWithFabViewController.swift in Sources */,
 				5357950923C6652D0075F035 /* SendingPostViewController.swift in Sources */,
 				5357950723C665110075F035 /* UsersListViewController.swift in Sources */,
 				5357951B23C74FB10075F035 /* MainViewController.swift in Sources */,
