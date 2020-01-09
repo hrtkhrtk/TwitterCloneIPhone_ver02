@@ -11,6 +11,14 @@ import UIKit
 class ViewController: UIViewController {
     @IBOutlet weak var menuButton: UIBarButtonItem!
     
+    @IBAction func handleSettingButton(_ sender: Any) {
+        let popupViewController = storyboard?.instantiateViewController(withIdentifier: "Popup")
+        popupViewController!.modalPresentationStyle = .overFullScreen
+        //popupViewController!.modalPresentationStyle = .overCurrentContext
+        popupViewController!.modalTransitionStyle = .crossDissolve
+        self.present(popupViewController!, animated: false, completion: nil)
+    }
+    
     //let mainViewController = self.storyboard?.instantiateViewController(withIdentifier: "Main")
     //let contentViewController = UINavigationController(rootViewController: UIViewController())
     let sidemenuViewController = SidemenuViewController()

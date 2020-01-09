@@ -10,6 +10,35 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--Popup View Controller-->
+        <scene sceneID="qpW-aj-wKi">
+            <objects>
+                <viewController storyboardIdentifier="Popup" modalTransitionStyle="crossDissolve" modalPresentationStyle="currentContext" id="bNO-Vf-Z6g" customClass="PopupViewController" customModule="TwitterClone" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="D95-T8-GqQ">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view tag="100" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7Z7-jG-14I">
+                                <rect key="frame" x="204" y="54" width="200" height="200"/>
+                                <color key="backgroundColor" red="0.97667051179999997" green="1" blue="0.37780568599999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="200" id="BOK-oH-5b6"/>
+                                    <constraint firstAttribute="height" constant="200" id="hcD-72-uc8"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.20436289612676056" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="QgW-RD-Se2" firstAttribute="trailing" secondItem="7Z7-jG-14I" secondAttribute="trailing" constant="10" id="7of-i5-ERr"/>
+                            <constraint firstItem="7Z7-jG-14I" firstAttribute="top" secondItem="QgW-RD-Se2" secondAttribute="top" constant="10" id="aYI-Ls-3w1"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="QgW-RD-Se2"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="B54-Rw-YS3" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-745" y="125"/>
+        </scene>
         <!--Main View Controller-->
         <scene sceneID="Lgi-Jn-Aac">
             <objects>
@@ -46,6 +75,11 @@
                     </view>
                     <navigationItem key="navigationItem" id="9SZ-v6-Bep">
                         <barButtonItem key="leftBarButtonItem" title="Menu" id="aRd-kd-c3M"/>
+                        <barButtonItem key="rightBarButtonItem" title="設定・購入" id="9od-Su-ZZj">
+                            <connections>
+                                <action selector="handleSettingButton:" destination="BYZ-38-t0r" id="o16-ar-gfs"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="menuButton" destination="aRd-kd-c3M" id="nfN-qn-BDm"/>
@@ -270,7 +304,7 @@
                                 <textInputTraits key="textInputTraits" keyboardType="alphabet" secureTextEntry="YES"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hV6-xQ-grt">
-                                <rect key="frame" x="57" y="296" width="300" height="40"/>
+                                <rect key="frame" x="57" y="296" width="300" height="22"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="300" id="Z5u-iP-bPS"/>
                                 </constraints>
@@ -325,14 +359,14 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4YN-Pk-jpx">
-                                <rect key="frame" x="57" y="506" width="300" height="40"/>
+                                <rect key="frame" x="57" y="488" width="300" height="22"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="300" id="xIm-dP-ggU"/>
                                 </constraints>
                                 <state key="normal" title="スキップする" backgroundImage="btn"/>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uHC-lD-siD">
-                                <rect key="frame" x="57" y="456" width="300" height="40"/>
+                                <rect key="frame" x="57" y="456" width="300" height="22"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="300" id="ypt-ic-E7f"/>
                                 </constraints>
@@ -492,21 +526,21 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3qT-mS-8uX">
-                                <rect key="frame" x="57" y="651" width="300" height="40"/>
+                                <rect key="frame" x="57" y="651" width="300" height="22"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="300" id="mjD-pb-MYe"/>
                                 </constraints>
                                 <state key="normal" title="変更" backgroundImage="btn"/>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bXB-Ym-rhS">
-                                <rect key="frame" x="57" y="751" width="300" height="40"/>
+                                <rect key="frame" x="57" y="715" width="300" height="22"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="300" id="ZIw-gY-coG"/>
                                 </constraints>
                                 <state key="normal" title="ログアウト" backgroundImage="btn"/>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HPE-Ej-KTW">
-                                <rect key="frame" x="57" y="701" width="300" height="40"/>
+                                <rect key="frame" x="57" y="683" width="300" height="22"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="300" id="HfX-Rm-Ke0"/>
                                 </constraints>
@@ -619,7 +653,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OaJ-Dh-7dT">
-                                <rect key="frame" x="57" y="366" width="300" height="40"/>
+                                <rect key="frame" x="57" y="366" width="300" height="22"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="300" id="vPZ-eU-XQl"/>
                                 </constraints>
@@ -700,7 +734,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Sb5-vg-0ps">
-                                <rect key="frame" x="57" y="241" width="300" height="40"/>
+                                <rect key="frame" x="57" y="241" width="300" height="22"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="300" id="Scq-X7-QhB"/>
                                 </constraints>
