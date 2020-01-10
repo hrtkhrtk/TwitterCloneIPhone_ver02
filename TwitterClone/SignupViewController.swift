@@ -54,6 +54,11 @@ class SignupViewController: UIViewController {
             }
         }
     }
+    
+    @IBAction func handleBackButton(_ sender: Any) {
+        // 画面を閉じてLoginViewControllerに戻る
+        self.dismiss(animated: true, completion: nil)
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()

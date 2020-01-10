@@ -163,7 +163,7 @@
                                 <textInputTraits key="textInputTraits" keyboardType="alphabet" secureTextEntry="YES"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vhv-kW-XPf">
-                                <rect key="frame" x="57" y="176" width="300" height="22"/>
+                                <rect key="frame" x="57" y="176" width="300" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="300" id="dgv-Xc-C6i"/>
                                 </constraints>
@@ -173,13 +173,13 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="初めての方：" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ina-4G-Vei">
-                                <rect key="frame" x="57" y="228" width="104" height="21"/>
+                                <rect key="frame" x="57" y="246" width="104" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rxr-0V-EI3">
-                                <rect key="frame" x="57" y="259" width="300" height="22"/>
+                                <rect key="frame" x="57" y="277" width="300" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="300" id="NSd-dN-epm"/>
                                 </constraints>
@@ -543,7 +543,7 @@
                                 <textInputTraits key="textInputTraits" keyboardType="alphabet" secureTextEntry="YES"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hV6-xQ-grt">
-                                <rect key="frame" x="57" y="296" width="300" height="22"/>
+                                <rect key="frame" x="57" y="296" width="300" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="300" id="Z5u-iP-bPS"/>
                                 </constraints>
@@ -552,9 +552,20 @@
                                     <action selector="handleSignupButton:" destination="ZFf-EJ-tM2" eventType="touchUpInside" id="cly-T0-1uP"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a82-4x-ZHT">
+                                <rect key="frame" x="57" y="346" width="300" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="300" id="iHX-fT-TWr"/>
+                                </constraints>
+                                <state key="normal" title="戻る" backgroundImage="btn"/>
+                                <connections>
+                                    <action selector="handleBackButton:" destination="ZFf-EJ-tM2" eventType="touchUpInside" id="6a1-gR-BLd"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="a82-4x-ZHT" firstAttribute="centerX" secondItem="r76-8g-ZOf" secondAttribute="centerX" id="0hR-7D-pce"/>
                             <constraint firstItem="hV6-xQ-grt" firstAttribute="top" secondItem="a09-aA-WwL" secondAttribute="bottom" constant="10" id="7j7-ew-Ykf"/>
                             <constraint firstItem="a09-aA-WwL" firstAttribute="top" secondItem="ZVg-nZ-q4y" secondAttribute="bottom" constant="10" id="CAD-Ai-9xn"/>
                             <constraint firstItem="a09-aA-WwL" firstAttribute="centerX" secondItem="r76-8g-ZOf" secondAttribute="centerX" id="COz-e2-DGO"/>
@@ -569,6 +580,7 @@
                             <constraint firstItem="o5N-3u-YVH" firstAttribute="top" secondItem="ViF-ll-7qy" secondAttribute="top" id="dJP-WJ-9EQ"/>
                             <constraint firstItem="lk0-Mr-GAp" firstAttribute="top" secondItem="Ytg-EB-XaE" secondAttribute="bottom" constant="10" id="jM0-E5-bz7"/>
                             <constraint firstItem="ZVg-nZ-q4y" firstAttribute="top" secondItem="lk0-Mr-GAp" secondAttribute="bottom" constant="10" id="mTn-rm-kOq"/>
+                            <constraint firstItem="a82-4x-ZHT" firstAttribute="top" secondItem="hV6-xQ-grt" secondAttribute="bottom" constant="10" id="z4b-V8-6uD"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="ViF-ll-7qy"/>
                     </view>
@@ -934,7 +946,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OaJ-Dh-7dT">
-                                <rect key="frame" x="57" y="366" width="300" height="22"/>
+                                <rect key="frame" x="57" y="366" width="300" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="300" id="vPZ-eU-XQl"/>
                                 </constraints>
@@ -1023,7 +1035,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Sb5-vg-0ps">
-                                <rect key="frame" x="57" y="241" width="300" height="22"/>
+                                <rect key="frame" x="57" y="241" width="300" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="300" id="Scq-X7-QhB"/>
                                 </constraints>
