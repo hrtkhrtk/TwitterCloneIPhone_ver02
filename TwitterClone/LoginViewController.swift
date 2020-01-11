@@ -42,8 +42,10 @@ class LoginViewController: UIViewController {
                 if let user = user {
                     let userRef = Database.database().reference().child("users").child(user.uid)
                     userRef.observeSingleEvent(of: .value, with: { (snapshot) in
-                        let data = snapshot.value as! [String: Int64]
-                        let available_to = data["available_to"]! // ここは必ず存在
+                        //let data = snapshot.value as! [String: Int64]
+                        let data = snapshot.value as! [String: Any]
+                        //let available_to = data["available_to"]! // ここは必ず存在
+                        let available_to = data["available_to"]! as! Int64 // ここは必ず存在
                         if (Int64(NSDate().timeIntervalSince1970 * 1000) > available_to) { // iPhoneの時刻をいじられたらたぶんちゃんと機能しない
                             // statusをupdate
                             let statusDic = ["status": String(0)]

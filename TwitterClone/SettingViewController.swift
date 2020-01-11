@@ -11,6 +11,9 @@ import Firebase
 
 class SettingViewController: UIViewController {
     
+    var iconImage: UIImage?
+    var backgroundImage: UIImage?
+    
     @IBOutlet weak var nicknameTextField: UITextField!
     @IBOutlet weak var selfIntroductionTextField: UITextField!
     @IBOutlet weak var iconImageAsButton: UIButton!
@@ -20,6 +23,12 @@ class SettingViewController: UIViewController {
     @IBOutlet weak var createdAtTextLabel: UILabel!
     @IBOutlet weak var statusTextLabel: UILabel!
     @IBOutlet weak var availableToTextLabel: UILabel!
+    
+    @IBAction func handleIconImageButton(_ sender: Any) {
+    }
+    
+    @IBAction func handleBackgroundImageButton(_ sender: Any) {
+    }
     
     @IBAction func handleChangeButton(_ sender: Any) {
     }
@@ -38,6 +47,14 @@ class SettingViewController: UIViewController {
             // ログインしていないときの処理
             let loginViewController = self.storyboard?.instantiateViewController(withIdentifier: "Login")
             self.present(loginViewController!, animated: true, completion: nil)
+        }
+        
+        if let image = self.iconImage {
+            self.iconImageAsButton.setImage(image, for: .normal)
+        }
+        
+        if let image = self.backgroundImage {
+            self.backgroundImageAsButton.setImage(image, for: .normal)
         }
     }
 

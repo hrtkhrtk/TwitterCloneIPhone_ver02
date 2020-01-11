@@ -10,6 +10,70 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--Image Select View Controller-->
+        <scene sceneID="byF-Oh-T6e">
+            <objects>
+                <viewController storyboardIdentifier="ImageSelect" id="R2G-DV-1aX" customClass="ImageSelectViewController" customModule="TwitterClone" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="gk6-RX-KXC">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MMV-Gj-PnN">
+                                <rect key="frame" x="57" y="298" width="300" height="300"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sTT-hE-Oo7">
+                                        <rect key="frame" x="10" y="10" width="280" height="40"/>
+                                        <state key="normal" title="ライブラリ" backgroundImage="btn"/>
+                                        <connections>
+                                            <action selector="handleLibraryButton:" destination="R2G-DV-1aX" eventType="touchUpInside" id="dnp-ya-Z7p"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xJa-7D-BYD">
+                                        <rect key="frame" x="10" y="60" width="280" height="40"/>
+                                        <state key="normal" title="カメラ" backgroundImage="btn"/>
+                                        <connections>
+                                            <action selector="handleCameraButton:" destination="R2G-DV-1aX" eventType="touchUpInside" id="YGI-dS-sJw"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tdy-tx-E8i">
+                                        <rect key="frame" x="10" y="110" width="280" height="40"/>
+                                        <state key="normal" title="キャンセル" backgroundImage="btn"/>
+                                        <connections>
+                                            <action selector="handleCancelButton:" destination="R2G-DV-1aX" eventType="touchUpInside" id="fi3-jv-DHZ"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="xJa-7D-BYD" firstAttribute="leading" secondItem="MMV-Gj-PnN" secondAttribute="leading" constant="10" id="0Zh-Fv-Vpl"/>
+                                    <constraint firstItem="Tdy-tx-E8i" firstAttribute="leading" secondItem="MMV-Gj-PnN" secondAttribute="leading" constant="10" id="7Zz-Ec-pgT"/>
+                                    <constraint firstItem="xJa-7D-BYD" firstAttribute="centerX" secondItem="MMV-Gj-PnN" secondAttribute="centerX" id="Apx-xB-35a"/>
+                                    <constraint firstAttribute="height" constant="300" id="BPl-Ch-PPN"/>
+                                    <constraint firstAttribute="width" constant="300" id="Cic-9E-Q9X"/>
+                                    <constraint firstItem="sTT-hE-Oo7" firstAttribute="centerX" secondItem="MMV-Gj-PnN" secondAttribute="centerX" id="EyK-cg-8Ie"/>
+                                    <constraint firstItem="Tdy-tx-E8i" firstAttribute="centerX" secondItem="MMV-Gj-PnN" secondAttribute="centerX" id="Fnd-7X-Se4"/>
+                                    <constraint firstItem="sTT-hE-Oo7" firstAttribute="leading" secondItem="MMV-Gj-PnN" secondAttribute="leading" constant="10" id="ZyH-1x-odd"/>
+                                    <constraint firstAttribute="trailing" secondItem="Tdy-tx-E8i" secondAttribute="trailing" constant="10" id="du4-nX-HA6"/>
+                                    <constraint firstItem="sTT-hE-Oo7" firstAttribute="top" secondItem="MMV-Gj-PnN" secondAttribute="top" constant="10" id="dvB-rT-OCx"/>
+                                    <constraint firstItem="xJa-7D-BYD" firstAttribute="top" secondItem="sTT-hE-Oo7" secondAttribute="bottom" constant="10" id="hSF-SE-PYP"/>
+                                    <constraint firstAttribute="trailing" secondItem="xJa-7D-BYD" secondAttribute="trailing" constant="10" id="l8H-Rc-xz5"/>
+                                    <constraint firstAttribute="trailing" secondItem="sTT-hE-Oo7" secondAttribute="trailing" constant="10" id="qUh-qp-zLU"/>
+                                    <constraint firstItem="Tdy-tx-E8i" firstAttribute="top" secondItem="xJa-7D-BYD" secondAttribute="bottom" constant="10" id="yIa-ye-1YH"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.19817341549295775" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="MMV-Gj-PnN" firstAttribute="centerX" secondItem="gk6-RX-KXC" secondAttribute="centerX" id="8AW-aB-csS"/>
+                            <constraint firstItem="MMV-Gj-PnN" firstAttribute="centerY" secondItem="gk6-RX-KXC" secondAttribute="centerY" id="MCI-pv-sAY"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="uQS-4C-U9x"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dL5-Cj-4fO" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1688" y="116"/>
+        </scene>
         <!--Popup View Controller-->
         <scene sceneID="qpW-aj-wKi">
             <objects>
@@ -648,6 +712,9 @@
                                 </constraints>
                                 <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" title="icon_image"/>
+                                <connections>
+                                    <action selector="handleIconImageButton:" destination="473-5Y-hf3" eventType="touchUpInside" id="Kqb-yC-I2M"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="laa-eg-WZR">
                                 <rect key="frame" x="107" y="296" width="200" height="150"/>
@@ -658,6 +725,9 @@
                                 </constraints>
                                 <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" title="background_image"/>
+                                <connections>
+                                    <action selector="handleBackgroundImageButton:" destination="473-5Y-hf3" eventType="touchUpInside" id="Aq8-vL-zwP"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -727,15 +797,9 @@
                                     <constraint firstAttribute="width" constant="200" id="iCB-Kb-yzb"/>
                                 </constraints>
                                 <state key="normal" title="icon_image"/>
-                            </button>
-                            <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vN6-I2-w8e">
-                                <rect key="frame" x="107" y="336" width="200" height="150"/>
-                                <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="200" id="Y2K-W0-Psk"/>
-                                    <constraint firstAttribute="height" constant="150" id="uYz-Ql-T9N"/>
-                                </constraints>
-                                <state key="normal" title="background_image"/>
+                                <connections>
+                                    <action selector="handleIconImageButton:" destination="Y61-bd-kyj" eventType="touchUpInside" id="PJV-cT-WJf"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="email：" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JiC-JR-BMW">
                                 <rect key="frame" x="57" y="496" width="58" height="21"/>
@@ -825,6 +889,18 @@
                                 <state key="normal" title="購入ページ" backgroundImage="btn"/>
                                 <connections>
                                     <action selector="handleToPurchasingButton:" destination="Y61-bd-kyj" eventType="touchUpInside" id="wEc-OV-QXr"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleAspectFit" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vN6-I2-w8e">
+                                <rect key="frame" x="107" y="338" width="200" height="150"/>
+                                <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="200" id="Y2K-W0-Psk"/>
+                                    <constraint firstAttribute="height" constant="150" id="uYz-Ql-T9N"/>
+                                </constraints>
+                                <state key="normal" title="background_image"/>
+                                <connections>
+                                    <action selector="handleBackgroundImageButton:" destination="Y61-bd-kyj" eventType="touchUpInside" id="exu-UQ-NwI"/>
                                 </connections>
                             </button>
                         </subviews>

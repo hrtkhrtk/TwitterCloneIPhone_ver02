@@ -108,8 +108,10 @@ class SignupViewController: UIViewController {
                     }
                     print("DEBUG_PRINT: setValueに成功しました。")
                     userRef.observeSingleEvent(of: .value, with: { (snapshot) in
-                        let dataInListener = snapshot.value as! [String: Int64]
-                        let created_at_InListener = dataInListener["created_at"] ?? (Int64(-1)) // (-1)の値に意味はない
+                        //let dataInListener = snapshot.value as! [String: Int64]
+                        let dataInListener = snapshot.value as! [String: Any]
+                        //let created_at_InListener = dataInListener["created_at"] ?? (Int64(-1)) // (-1)の値に意味はない
+                        let created_at_InListener = (dataInListener["created_at"] as? Int64) ?? (Int64(-1)) // (-1)の値に意味はない
                         
                         var available_to = Int64(-1) // (-1)の値に意味はない
                         if created_at_InListener >= 0 {
