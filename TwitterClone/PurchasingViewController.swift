@@ -15,6 +15,11 @@ class PurchasingViewController: UIViewController {
     @IBOutlet weak var datePicker: UIDatePicker!
     @IBOutlet weak var priceTextLabel: UILabel!
     
+    @IBAction func handleBackButton(_ sender: Any) {
+        // 全てのモーダルを閉じる
+        UIApplication.shared.keyWindow?.rootViewController?.dismiss(animated: true, completion: nil)
+    }
+    
     @IBAction func handlePurchaseButton(_ sender: Any) {
     }
 

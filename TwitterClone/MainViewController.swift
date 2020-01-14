@@ -12,6 +12,9 @@ import Firebase
 class MainViewController: UIViewController {
     
     @IBAction func handleFabButton(_ sender: Any) {
+        // 画面を表示する
+        let sendingPostViewController = self.storyboard?.instantiateViewController(withIdentifier: "SendingPost")
+        self.present(sendingPostViewController!, animated: true, completion: nil)
     }
 
     override func viewDidLoad() {

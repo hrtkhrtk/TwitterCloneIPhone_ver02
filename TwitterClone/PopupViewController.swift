@@ -11,9 +11,15 @@ import UIKit
 class PopupViewController: UIViewController {
     
     @IBAction func handleToSettingButton(_ sender: Any) {
+        // 画面を表示する
+        let settingViewController = self.storyboard?.instantiateViewController(withIdentifier: "Setting")
+        self.present(settingViewController!, animated: true, completion: nil)
     }
     
     @IBAction func handleToPurchasingButton(_ sender: Any) {
+        // 画面を表示する
+        let purchasingViewController = self.storyboard?.instantiateViewController(withIdentifier: "Purchasing")
+        self.present(purchasingViewController!, animated: true, completion: nil)
     }
 
     override func viewDidLoad() {

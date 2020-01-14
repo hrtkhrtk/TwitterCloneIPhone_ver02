@@ -68,7 +68,9 @@ class LoginViewController: UIViewController {
                     SVProgressHUD.dismiss()
                     
                     // 画面を閉じてViewControllerに戻る
-                    self.dismiss(animated: true, completion: nil)
+                    //self.dismiss(animated: true, completion: nil)
+                    // 全てのモーダルを閉じる
+                    UIApplication.shared.keyWindow?.rootViewController?.dismiss(animated: true, completion: nil)
                 }
             }
         }

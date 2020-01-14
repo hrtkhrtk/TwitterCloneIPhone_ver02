@@ -21,6 +21,11 @@ class UserDetailViewController: UIViewController {
     @IBOutlet weak var followersNumTextLabel: UILabel!
     @IBOutlet weak var tableView: UITableView!
     
+    @IBAction func handleBackButton(_ sender: Any) {
+        // 全てのモーダルを閉じる
+        UIApplication.shared.keyWindow?.rootViewController?.dismiss(animated: true, completion: nil)
+    }
+    
     @IBAction func handleFollowButton(_ sender: Any) {
     }
 

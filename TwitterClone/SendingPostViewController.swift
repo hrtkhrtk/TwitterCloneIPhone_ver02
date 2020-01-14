@@ -13,6 +13,11 @@ class SendingPostViewController: UIViewController {
     
     @IBOutlet weak var postTextField: UITextField!
     
+    @IBAction func handleBackButton(_ sender: Any) {
+        // 全てのモーダルを閉じる
+        UIApplication.shared.keyWindow?.rootViewController?.dismiss(animated: true, completion: nil)
+    }
+    
     @IBAction func handlePostButton(_ sender: Any) {
     }
     

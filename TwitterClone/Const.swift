@@ -13,4 +13,15 @@ struct Const {
     static let id__backgroundImage_from_RegisteringView = 2
     static let id__iconImage_from_SettingView = 3
     static let id__backgroundImage_from_SettingView = 4
+    
+    static func getDateTime(time:Int64, format:String) -> String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = format
+        
+        let dateUnix:TimeInterval = TimeInterval(Int64(time / 1000)) // Int()は小数点以下切り捨てでfloorと同じ。
+        let date = Date(timeIntervalSince1970: dateUnix)
+        let dateString = formatter.string(from: date)
+        
+        return dateString
+    }
 }
