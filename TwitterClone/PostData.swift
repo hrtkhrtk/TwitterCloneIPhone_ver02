@@ -18,8 +18,9 @@ class PostData: NSObject {
     var postId: String?
     var iconImageString: String?
     var iconImage: UIImage?
+    var isFaved: Bool = false
     
-    init(nickname: String, text: String, createdAt: Int64, favoritersList: [String], userId: String, postId: String, iconImageString: String) {
+    init(nickname: String, text: String, createdAt: Int64, favoritersList: [String], userId: String, postId: String, iconImageString: String, myId: String) {
         self.nickname = nickname
         self.text = text
         self.createdAt = createdAt
@@ -28,5 +29,12 @@ class PostData: NSObject {
         self.postId = postId
         self.iconImageString = iconImageString
         self.iconImage = UIImage(data: Data(base64Encoded: self.iconImageString!, options: .ignoreUnknownCharacters)!)
+        
+        for favoriterId in self.favoritersList! {
+            if favoriterId == myId {
+                self.isFaved = true
+                break
+            }
+        }
     }
 }

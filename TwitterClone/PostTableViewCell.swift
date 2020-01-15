@@ -28,4 +28,20 @@ class PostTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
+    func setPostData(_ postData: PostData) {
+        self.iconImageView.image = postData.iconImage
+        self.nicknameTextLabel.text = postData.nickname
+        self.createdAtTextLabel.text = Const.getDateTime(time:postData.createdAt!, format:"yyyy/MM/dd HH:mm:ss")
+        self.postTextLabel.text = postData.text
+        let favoritesNum = postData.favoritersList!.count
+        self.favoritesNumTextLabel.text = String(favoritesNum)
+        
+        if postData.isFaved {
+            let buttonImage = UIImage(named: "like_exist")
+            self.favoriteButton.setImage(buttonImage, for: .normal)
+        } else {
+            let buttonImage = UIImage(named: "like_none")
+            self.favoriteButton.setImage(buttonImage, for: .normal)
+        }
+    }
 }

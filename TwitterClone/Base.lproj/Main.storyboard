@@ -729,7 +729,7 @@
                                     <action selector="handleSkipButton:" destination="473-5Y-hf3" eventType="touchUpInside" id="mKo-cR-xRa"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uHC-lD-siD">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uHC-lD-siD">
                                 <rect key="frame" x="57" y="456" width="300" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="300" id="ypt-ic-E7f"/>
@@ -776,6 +776,7 @@
                             <constraint firstItem="wzR-1R-Luu" firstAttribute="centerX" secondItem="Thi-1C-Iil" secondAttribute="centerX" id="K1M-uk-tg8"/>
                             <constraint firstItem="njk-pW-m2J" firstAttribute="centerX" secondItem="Thi-1C-Iil" secondAttribute="centerX" id="TOd-Zx-6S1"/>
                             <constraint firstItem="laa-eg-WZR" firstAttribute="top" secondItem="njk-pW-m2J" secondAttribute="bottom" constant="10" id="Tfv-uq-TDF"/>
+                            <constraint firstItem="uHC-lD-siD" firstAttribute="centerX" secondItem="Thi-1C-Iil" secondAttribute="centerX" id="YJs-r1-TVV"/>
                             <constraint firstItem="wzR-1R-Luu" firstAttribute="top" secondItem="KVl-Po-b1w" secondAttribute="top" id="bch-9S-4Ra"/>
                             <constraint firstItem="uHC-lD-siD" firstAttribute="top" secondItem="laa-eg-WZR" secondAttribute="bottom" constant="10" id="m7S-f1-3sb"/>
                             <constraint firstItem="4YN-Pk-jpx" firstAttribute="top" secondItem="uHC-lD-siD" secondAttribute="bottom" constant="10" id="zPZ-yQ-Wz2"/>
@@ -1247,12 +1248,18 @@
                         <subviews>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="MMe-Ga-soE">
                                 <rect key="frame" x="10" y="54" width="336" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="BFz-iF-ehY"/>
+                                </constraints>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Iek-Qn-J1M">
                                 <rect key="frame" x="356" y="54" width="48" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="b4m-Nn-HD3"/>
+                                </constraints>
                                 <state key="normal" title="Search"/>
                                 <connections>
                                     <action selector="handleSearchButton:" destination="Ddv-78-KkR" eventType="touchUpInside" id="ivE-Pp-WSz"/>
@@ -1278,7 +1285,10 @@
                         <viewLayoutGuide key="safeArea" id="yzB-fc-O6l"/>
                     </view>
                     <connections>
+                        <outlet property="searchButtonHeightConstraint" destination="b4m-Nn-HD3" id="b8d-0g-uPj"/>
                         <outlet property="searchTextField" destination="MMe-Ga-soE" id="vWs-Ue-pgj"/>
+                        <outlet property="searchTextFieldHeightConstraint" destination="BFz-iF-ehY" id="QTd-ar-yuK"/>
+                        <outlet property="searchTextFieldTopConstraint" destination="lHb-RX-8jL" id="BSK-Hj-rwP"/>
                         <outlet property="tableView" destination="avM-6q-Pe3" id="2or-gD-4eK"/>
                     </connections>
                 </viewController>
