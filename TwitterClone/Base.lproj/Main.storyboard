@@ -1285,6 +1285,7 @@
                         <viewLayoutGuide key="safeArea" id="yzB-fc-O6l"/>
                     </view>
                     <connections>
+                        <outlet property="searchButton" destination="Iek-Qn-J1M" id="Ity-7w-7OB"/>
                         <outlet property="searchButtonHeightConstraint" destination="b4m-Nn-HD3" id="b8d-0g-uPj"/>
                         <outlet property="searchTextField" destination="MMe-Ga-soE" id="vWs-Ue-pgj"/>
                         <outlet property="searchTextFieldHeightConstraint" destination="BFz-iF-ehY" id="QTd-ar-yuK"/>

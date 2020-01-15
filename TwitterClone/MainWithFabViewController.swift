@@ -28,6 +28,7 @@ class MainWithFabViewController: UIViewController, UITableViewDataSource, UITabl
     @IBOutlet weak var searchTextFieldTopConstraint: NSLayoutConstraint!
     @IBOutlet weak var searchTextFieldHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var searchButtonHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var searchButton: UIButton!
     
     @IBAction func handleSearchButton(_ sender: Any) {
     }
@@ -71,6 +72,7 @@ class MainWithFabViewController: UIViewController, UITableViewDataSource, UITabl
                 searchTextFieldTopConstraint.constant = 0
                 searchTextFieldHeightConstraint.constant = 0
                 searchButtonHeightConstraint.constant = 0
+                searchButton.setTitle("", for: .normal)
                 
                 if self.postRefObserving == false {
                     Database.database().reference().child("users").child(user.uid).child("followings_list").observe(.value, with: { snapshot in
@@ -166,7 +168,7 @@ class MainWithFabViewController: UIViewController, UITableViewDataSource, UITabl
                 searchTextFieldTopConstraint.constant = 10
                 searchTextFieldHeightConstraint.constant = 30
                 searchButtonHeightConstraint.constant = 30
-                
+                searchButton.setTitle("Search", for: .normal)
                 
                 
                 
@@ -188,7 +190,7 @@ class MainWithFabViewController: UIViewController, UITableViewDataSource, UITabl
                 searchTextFieldTopConstraint.constant = 0
                 searchTextFieldHeightConstraint.constant = 0
                 searchButtonHeightConstraint.constant = 0
-                
+                searchButton.setTitle("", for: .normal)
                 
                 
                 
@@ -204,7 +206,7 @@ class MainWithFabViewController: UIViewController, UITableViewDataSource, UITabl
                 searchTextFieldTopConstraint.constant = 0
                 searchTextFieldHeightConstraint.constant = 0
                 searchButtonHeightConstraint.constant = 0
-                
+                searchButton.setTitle("", for: .normal)
                 
                 
                 
