@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import SVProgressHUD
 
 class SendingPostViewController: UIViewController {
     
@@ -19,6 +20,34 @@ class SendingPostViewController: UIViewController {
     }
     
     @IBAction func handlePostButton(_ sender: Any) {
+        // キーボードを閉じる
+        self.view.endEditing(true)
+        
+        if let post = postTextField.text {
+            if post.isEmpty {
+                SVProgressHUD.showError(withStatus: "正しく入力してください")
+                return
+            }
+            
+            // HUDで処理中を表示
+            SVProgressHUD.show()
+            
+            let user = Auth.auth().currentUser
+            if let user = user {
+                let postRef = Database.database().reference().child("posts").child(user.uid)
+                let postDic = ["text": post,
+                               "created_at": ServerValue.timestamp()] as [String: Any]
+                postRef.childByAutoId().setValue(postDic) { (error, databaseReference) in
+                    if let error = error {
+                        print("DEBUG_PRINT: " + error.localizedDescription)
+                        SVProgressHUD.showError(withStatus: "postに失敗しました。")
+                        return
+                    }
+                    print("DEBUG_PRINT: postに成功しました。")
+                    SVProgressHUD.dismiss()
+                }
+            }
+        }
     }
     
     override func viewDidLoad() {
@@ -37,15 +66,4 @@ class SendingPostViewController: UIViewController {
             self.present(loginViewController!, animated: true, completion: nil)
         }
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

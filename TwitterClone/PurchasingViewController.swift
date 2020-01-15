@@ -39,6 +39,8 @@ class PurchasingViewController: UIViewController {
             self.present(loginViewController!, animated: true, completion: nil)
         }
     }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {}
 
     /*
     // MARK: - Navigation
