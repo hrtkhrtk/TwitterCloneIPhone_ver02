@@ -145,6 +145,26 @@ class MyPostsViewController: UIViewController, UITableViewDataSource, UITableVie
         }
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        if self.postRefObserving == true {
+            // viewWillDisappearでテーブルをクリアしてオブザーバーを削除する。
+            // テーブルをクリアする
+            self.postArray.removeAll()
+            self.tableView.reloadData()
+            
+            // オブザーバーを削除する // これが必要なのか不明
+            Database.database().reference().child("posts").child(self.currentUserUid).removeAllObservers()
+            
+            self.currentUserUid = ""
+            
+            // DatabaseのobserveEventが上記コードにより解除されたため
+            // falseとする
+            self.postRefObserving = false
+        }
+        
+        super.viewWillDisappear(animated)
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.postArray.count
     }

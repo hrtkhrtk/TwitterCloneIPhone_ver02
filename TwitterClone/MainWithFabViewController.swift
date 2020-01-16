@@ -159,6 +159,30 @@ class MainWithFabViewController: UIViewController, UITableViewDataSource, UITabl
         }
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        if self.postRefObserving == true {
+            // viewWillDisappearでテーブルをクリアしてオブザーバーを削除する。
+            // テーブルをクリアする
+            self.postArray.removeAll()
+            self.tableView.reloadData()
+            
+            // オブザーバーを削除する // これが必要なのか不明
+            for user_id in self.followingsListWithCurrentUser {
+                Database.database().reference().child("posts").child(user_id).removeAllObservers()
+            }
+            Database.database().reference().child("users").child(self.currentUserUid).child("followings_list").removeAllObservers()
+            
+            self.followingsListWithCurrentUser.removeAll()
+            self.currentUserUid = ""
+            
+            // DatabaseのobserveEventが上記コードにより解除されたため
+            // falseとする
+            self.postRefObserving = false
+        }
+        
+        super.viewWillDisappear(animated)
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.postArray.count
     }
