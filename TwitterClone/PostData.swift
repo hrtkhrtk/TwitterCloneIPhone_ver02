@@ -12,7 +12,6 @@ class PostData: NSObject {
     var nickname: String?
     var text: String?
     var createdAt: Int64?
-    //var favoritersList: [String] = []
     var favoritersList: [String]?
     var userId: String?
     var postId: String?

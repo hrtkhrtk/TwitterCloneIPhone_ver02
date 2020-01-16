@@ -67,8 +67,6 @@ class SignupViewController: UIViewController {
     }
     
     override func viewWillDisappear(_ animated: Bool) {
-        //setNotification()
-        
         super.viewWillDisappear(animated)
     }
     
@@ -108,17 +106,12 @@ class SignupViewController: UIViewController {
                     }
                     print("DEBUG_PRINT: setValueに成功しました。")
                     userRef.observeSingleEvent(of: .value, with: { (snapshot) in
-                        //let dataInListener = snapshot.value as! [String: Int64]
                         let dataInListener = snapshot.value as! [String: Any]
-                        //let created_at_InListener = dataInListener["created_at"] ?? (Int64(-1)) // (-1)の値に意味はない
                         let created_at_InListener = (dataInListener["created_at"] as? Int64) ?? (Int64(-1)) // (-1)の値に意味はない
                         
                         var available_to = Int64(-1) // (-1)の値に意味はない
                         if created_at_InListener >= 0 {
-                            //let total_day:Int64 = Int64(floor((created_at_InListener / (24*60*60*1000))))
-                            //let total_day:Int64 = floor((created_at_InListener / (24*60*60*1000)))
                             let total_day:Int64 = Int64(created_at_InListener / (24*60*60*1000)) // Int()は小数点以下切り捨てでfloorと同じ。
-                            //let available_to = ((total_day + 6) * (24*60*60*1000) - 1000) // 5日後の23時59分59秒
                             available_to = ((total_day + 6) * (24*60*60*1000) - 1000) // 5日後の23時59分59秒
                         }
                         
@@ -169,10 +162,7 @@ class SignupViewController: UIViewController {
         content.sound = UNNotificationSound.default
         
         // 参考：https://qiita.com/alpha22jp/items/676dca97ad54b86645e7
-        //let dateUnix:NSTimeInterval = floor(time / 1000)
-        //let dateUnix:TimeInterval = floor(time / 1000)
         let dateUnix:TimeInterval = TimeInterval(Int64(time / 1000)) // Int()は小数点以下切り捨てでfloorと同じ。
-        //let date = NSDate(timeIntervalSince1970: dateUnix)
         let date = Date(timeIntervalSince1970: dateUnix)
         
         // ローカル通知が発動するtrigger（日付マッチ）を作成

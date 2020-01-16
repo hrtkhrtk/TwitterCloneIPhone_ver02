@@ -81,9 +81,7 @@ class SidemenuViewController: UIViewController {
     
     @objc private func backgroundTapped(sender: UITapGestureRecognizer) {
         hideContentView(animated: true) { (_) in
-            //self.willMove(toParentViewController: nil)
             self.willMove(toParent: nil)
-            //self.removeFromParentViewController()
             self.removeFromParent()
             self.view.removeFromSuperview()
         }

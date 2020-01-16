@@ -44,7 +44,6 @@ class SendingPostViewController: UIViewController {
                         return
                     }
                     print("DEBUG_PRINT: postに成功しました。")
-                    //SVProgressHUD.dismiss()
                     SVProgressHUD.showSuccess(withStatus: "postに成功しました")
                     self.postTextField.text = ""
                 }

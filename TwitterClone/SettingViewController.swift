@@ -116,8 +116,6 @@ class SettingViewController: UIViewController {
         // ログイン画面を表示する
         let loginViewController = self.storyboard?.instantiateViewController(withIdentifier: "Login")
         self.present(loginViewController!, animated: true, completion: nil)
-        // 全てのモーダルを閉じる（ログイン画面を表示する）
-        //UIApplication.shared.keyWindow?.rootViewController?.dismiss(animated: true, completion: nil)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -179,17 +177,6 @@ class SettingViewController: UIViewController {
             }
         }
     }
-    
-//    override func viewWillDisappear(_ animated: Bool) {
-//        super.viewWillDisappear(animated)
-//        //presentingViewController?.beginAppearanceTransition(true, animated: animated) // 参考：https://techblog.recochoku.jp/7215
-//        //presentingViewController?.endAppearanceTransition()
-//        print(UIApplication.shared.keyWindow?.rootViewController) // test
-//        print(UIApplication.shared.keyWindow?.rootViewController?.presentedViewController) // test
-//        print(UIApplication.shared.keyWindow?.rootViewController?.presentingViewController) // test
-//        UIApplication.shared.keyWindow?.rootViewController?.beginAppearanceTransition(true, animated: animated) // 参考：https://techblog.recochoku.jp/7215
-//        UIApplication.shared.keyWindow?.rootViewController?.endAppearanceTransition()
-//    }
     
     private func cancelNotification() {
         // ローカル通知をキャンセルする

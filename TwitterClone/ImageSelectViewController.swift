@@ -66,32 +66,22 @@ class ImageSelectViewController: UIViewController, UIImagePickerControllerDelega
             print("DEBUG_PRINT: image = \(image)")
             
             if self.id == Const.id__iconImage_from_RegisteringView {
-                //print("test0111n02")
-                //let registeringViewController = self.storyboard?.instantiateViewController(withIdentifier: "Registering") as! RegisteringViewController
                 let registeringViewController = self.presentingViewController as! RegisteringViewController
-                //registeringViewController.iconImageAsButton.setImage(image, for: .normal)
                 registeringViewController.iconImage = image
                 self.id = -1
                 self.dismiss(animated: true, completion: nil)
-                //print("test0111n03")
             } else if self.id == Const.id__backgroundImage_from_RegisteringView {
-                //let registeringViewController = self.storyboard?.instantiateViewController(withIdentifier: "Registering") as! RegisteringViewController
                 let registeringViewController = self.presentingViewController as! RegisteringViewController
-                //registeringViewController.backgroundImageAsButton.setImage(image, for: .normal)
                 registeringViewController.backgroundImage = image
                 self.id = -1
                 self.dismiss(animated: true, completion: nil)
             } else if self.id == Const.id__iconImage_from_SettingView {
-                //let settingViewController = self.storyboard?.instantiateViewController(withIdentifier: "Setting") as! SettingViewController
                 let settingViewController = self.presentingViewController as! SettingViewController
-                //settingViewController.iconImageAsButton.setImage(image, for: .normal)
                 settingViewController.iconImage = image
                 self.id = -1
                 self.dismiss(animated: true, completion: nil)
             } else if self.id == Const.id__backgroundImage_from_SettingView {
-                //let settingViewController = self.storyboard?.instantiateViewController(withIdentifier: "Setting") as! SettingViewController
                 let settingViewController = self.presentingViewController as! SettingViewController
-                //settingViewController.backgroundImageAsButton.setImage(image, for: .normal)
                 settingViewController.backgroundImage = image
                 self.id = -1
                 self.dismiss(animated: true, completion: nil)
@@ -100,7 +90,6 @@ class ImageSelectViewController: UIViewController, UIImagePickerControllerDelega
     }
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-        //print("test0111n04")
         // 閉じる
         picker.dismiss(animated: true, completion: nil)
     }

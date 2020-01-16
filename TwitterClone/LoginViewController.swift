@@ -42,9 +42,7 @@ class LoginViewController: UIViewController {
                 if let user = user {
                     let userRef = Database.database().reference().child("users").child(user.uid)
                     userRef.observeSingleEvent(of: .value, with: { (snapshot) in
-                        //let data = snapshot.value as! [String: Int64]
                         let data = snapshot.value as! [String: Any]
-                        //let available_to = data["available_to"]! // ここは必ず存在
                         let available_to = data["available_to"]! as! Int64 // ここは必ず存在
                         if (Int64(NSDate().timeIntervalSince1970 * 1000) > available_to) { // iPhoneの時刻をいじられたらたぶんちゃんと機能しない
                             // statusをupdate
@@ -67,8 +65,6 @@ class LoginViewController: UIViewController {
                     // HUDを消す
                     SVProgressHUD.dismiss()
                     
-                    // 画面を閉じてViewControllerに戻る
-                    //self.dismiss(animated: true, completion: nil)
                     // 全てのモーダルを閉じる
                     UIApplication.shared.keyWindow?.rootViewController?.dismiss(animated: true, completion: nil)
                 }
@@ -95,10 +91,7 @@ class LoginViewController: UIViewController {
         content.sound = UNNotificationSound.default
         
         // 参考：https://qiita.com/alpha22jp/items/676dca97ad54b86645e7
-        //let dateUnix:NSTimeInterval = floor(time / 1000)
-        //let dateUnix:TimeInterval = floor(time / 1000)
         let dateUnix:TimeInterval = TimeInterval(Int64(time / 1000)) // Int()は小数点以下切り捨てでfloorと同じ。
-        //let date = NSDate(timeIntervalSince1970: dateUnix)
         let date = Date(timeIntervalSince1970: dateUnix)
         
         // ローカル通知が発動するtrigger（日付マッチ）を作成

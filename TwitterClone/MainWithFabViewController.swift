@@ -17,21 +17,10 @@ class MainWithFabViewController: UIViewController, UITableViewDataSource, UITabl
     // DatabaseのobserveEventの登録状態を表す
     var postRefObserving = false
     
-//    var itemId:Int!
     var followingsListWithCurrentUser = [String]()
     var currentUserUid = ""
     
-    
-    
-    //@IBOutlet weak var searchTextField: UITextField!
     @IBOutlet weak var tableView: UITableView!
-    //@IBOutlet weak var searchTextFieldTopConstraint: NSLayoutConstraint!
-    //@IBOutlet weak var searchTextFieldHeightConstraint: NSLayoutConstraint!
-    //@IBOutlet weak var searchButtonHeightConstraint: NSLayoutConstraint!
-    //@IBOutlet weak var searchButton: UIButton!
-    
-    //@IBAction func handleSearchButton(_ sender: Any) {
-    //}
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -50,8 +39,6 @@ class MainWithFabViewController: UIViewController, UITableViewDataSource, UITabl
         // テーブル行の高さの概算値を設定しておく
         // 高さ概算値 = 90pt
         tableView.estimatedRowHeight = 90
-        
-//        self.itemId = Const.item_id__nav_posts // 最初はnav_posts
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -62,17 +49,9 @@ class MainWithFabViewController: UIViewController, UITableViewDataSource, UITabl
         if let user = user {
             self.currentUserUid = user.uid
             
-//            if self.itemId == Const.item_id__nav_posts {
             self.postArray.removeAll()
             // TableViewを再表示する
             self.tableView.reloadData()
-                
-//                //searchTextField.hidden = true // 参考：https://qiita.com/k-yamada-github/items/af0c4bce7a2ed1b47c43
-//                searchTextField.isHidden = true // 参考：https://qiita.com/k-yamada-github/items/af0c4bce7a2ed1b47c43
-//                searchTextFieldTopConstraint.constant = 0
-//                searchTextFieldHeightConstraint.constant = 0
-//                searchButtonHeightConstraint.constant = 0
-//                searchButton.setTitle("", for: .normal)
             
             if self.postRefObserving == false {
                 Database.database().reference().child("users").child(user.uid).child("followings_list").observe(.value, with: { snapshot in
@@ -95,7 +74,6 @@ class MainWithFabViewController: UIViewController, UITableViewDataSource, UITabl
                             let post_id = snapshotInside.key as! String
                             
                             Database.database().reference().child("users").child(user_id).observeSingleEvent(of: .value, with: { (snapshotInsideInside) in
-                                //let mapInsideInside = snapshotInsideInside.value as! [String: String] // ここは必ず存在
                                 let mapInsideInside = snapshotInsideInside.value as! [String: Any] // ここは必ず存在
                                 let iconImageString = mapInsideInside["icon_image"] as! String
                                 let nickname = mapInsideInside["nickname"] as! String
@@ -158,74 +136,10 @@ class MainWithFabViewController: UIViewController, UITableViewDataSource, UITabl
                 // trueとする
                 self.postRefObserving = true
             }
-//            }
-//            else if self.itemId == Const.item_id__nav_search_posts {
-//                self.postArray.removeAll()
-//                // TableViewを再表示する
-//                self.tableView.reloadData()
-//
-//                searchTextField.isHidden = false // 参考：https://qiita.com/k-yamada-github/items/af0c4bce7a2ed1b47c43
-//                searchTextFieldTopConstraint.constant = 10
-//                searchTextFieldHeightConstraint.constant = 30
-//                searchButtonHeightConstraint.constant = 30
-//                searchButton.setTitle("Search", for: .normal)
-//
-//
-//
-//
-//
-//            }
-//            else if self.itemId == Const.item_id__nav_search_users {
-//            }
-//            else if self.itemId == Const.item_id__nav_followings_list {
-//            }
-//            else if self.itemId == Const.item_id__nav_followers_list {
-//            }
-//            else if self.itemId == Const.item_id__nav_favorites_list {
-//                self.postArray.removeAll()
-//                // TableViewを再表示する
-//                self.tableView.reloadData()
-//
-//                searchTextField.isHidden = true // 参考：https://qiita.com/k-yamada-github/items/af0c4bce7a2ed1b47c43
-//                searchTextFieldTopConstraint.constant = 0
-//                searchTextFieldHeightConstraint.constant = 0
-//                searchButtonHeightConstraint.constant = 0
-//                searchButton.setTitle("", for: .normal)
-//
-//
-//
-//
-//
-//            }
-//            else if self.itemId == Const.item_id__nav_my_posts {
-//                self.postArray.removeAll()
-//                // TableViewを再表示する
-//                self.tableView.reloadData()
-//
-//                searchTextField.isHidden = true // 参考：https://qiita.com/k-yamada-github/items/af0c4bce7a2ed1b47c43
-//                searchTextFieldTopConstraint.constant = 0
-//                searchTextFieldHeightConstraint.constant = 0
-//                searchButtonHeightConstraint.constant = 0
-//                searchButton.setTitle("", for: .normal)
-//
-//
-//
-//
-//
-//
-//
-//            }
-//            else if self.itemId == Const.item_id__nav_policy {
-//            }
-//            else {
-//                // ここに来ることはないはずだが
-//                SVProgressHUD.showError(withStatus: "エラー")
-//            }
         } else {
             if self.postRefObserving == true {
                 // ログアウトを検出したら、一旦テーブルをクリアしてオブザーバーを削除する。
                 // テーブルをクリアする
-                //postArray = []
                 self.postArray.removeAll()
                 self.tableView.reloadData()
                 
@@ -242,23 +156,6 @@ class MainWithFabViewController: UIViewController, UITableViewDataSource, UITabl
                 // falseとする
                 self.postRefObserving = false
             }
-            
-            
-            
-            
-//            if observing == true {
-//                // ログアウトを検出したら、一旦テーブルをクリアしてオブザーバーを削除する。
-//                // テーブルをクリアする
-//                postArray = []
-//                tableView.reloadData()
-//                // オブザーバーを削除する
-//                let postsRef = Database.database().reference().child(Const.PostPath)
-//                postsRef.removeAllObservers()
-//
-//                // DatabaseのobserveEventが上記コードにより解除されたため
-//                // falseとする
-//                observing = false
-//            }
         }
     }
     
@@ -297,7 +194,6 @@ class MainWithFabViewController: UIViewController, UITableViewDataSource, UITabl
                 
                 if postData.isFaved { // 含まれていれば削除
                     // 保持している配列からidが同じものを探す
-                    //var index: Int = 0
                     var index: Int = -1
                     for favoriteData in existingFavoriteList {
                         if favoriteData["post_id"] == postData.postId {
@@ -329,62 +225,6 @@ class MainWithFabViewController: UIViewController, UITableViewDataSource, UITabl
                     })
                 }
             })
-
-
-            
-//            Database.database().reference().child("users").child(user.uid).observeSingleEvent(of: .value, with: { (snapshot) in
-//                //let userData = snapshot.value as! [String: String] // userDataは必ず存在
-//                let userData = snapshot.value as! [String: Any] // userDataは必ず存在
-//                if userData["favorites_list"] == nil {
-//                    let data:[String: String] = ["user_id": postData.userId!,
-//                                                 "post_id": postData.postId!]
-//                    let existingFavoriteList:[[String: String]] = [data]
-//                    Database.database().reference().child("users").child(user.uid).child("favorites_list").setValue(existingFavoriteList)
-//
-//                    Database.database().reference().child("posts").child(postData.userId!).child(postData.postId!).observeSingleEvent(of: .value, with: { (snapshotInside) in
-//                        let post = snapshotInside.value as! [String: Any] // postは必ず存在
-//                        var existingFavoritersListInPost = (post["favoriters_list"] as? [String]) ?? [String]()
-//                        existingFavoritersListInPost.append(user.uid)
-//                        Database.database().reference().child("posts").child(postData.userId!).child(postData.postId!).child("favoriters_list").setValue(existingFavoritersListInPost)
-//                    })
-//                } else {
-//                    var existingFavoriteList = userData["favorites_list"] as! [[String: String]] // 条件分岐により必ず存在
-//                    let data:[String: String] = ["user_id": postData.userId!,
-//                                                 "post_id": postData.postId!]
-//
-//                    if (!(existingFavoriteList.contains(data))) { // 含まれなければ追加
-//                        existingFavoriteList.append(data)
-//                        Database.database().reference().child("users").child(user.uid).child("favorites_list").setValue(existingFavoriteList)
-//
-//                        Database.database().reference().child("posts").child(postData.userId!).child(postData.postId!).observeSingleEvent(of: .value, with: { (snapshotInside) in
-//                            let post = snapshotInside.value as! [String: Any] // postは必ず存在
-//                            var existingFavoritersListInPost = (post["favoriters_list"] as? [String]) ?? [String]()
-//                            existingFavoritersListInPost.append(user.uid)
-//                            Database.database().reference().child("posts").child(postData.userId!).child(postData.postId!).child("favoriters_list").setValue(existingFavoritersListInPost)
-//                        })
-//                    } else { // 含まれていれば削除
-//                        // 保持している配列からidが同じものを探す
-//                        //var index: Int = 0
-//                        var index: Int = -1
-//                        for favoriteData in existingFavoriteList {
-//                            if favoriteData["post_id"] == postData.postId {
-//                                index = existingFavoriteList.firstIndex(of: favoriteData)!
-//                                break
-//                            }
-//                        }
-//                        existingFavoriteList.remove(at: index)
-//                        Database.database().reference().child("users").child(user.uid).child("favorites_list").setValue(existingFavoriteList)
-//
-//                        Database.database().reference().child("posts").child(postData.userId!).child(postData.postId!).observeSingleEvent(of: .value, with: { (snapshotInside) in
-//                            let post = snapshotInside.value as! [String: Any] // postは必ず存在
-//                            var existingFavoritersListInPost = (post["favoriters_list"] as? [String]) ?? [String]()
-//                            let indexInside = existingFavoritersListInPost.firstIndex(of: user.uid)!
-//                            existingFavoritersListInPost.remove(at: indexInside)
-//                            Database.database().reference().child("posts").child(postData.userId!).child(postData.postId!).child("favoriters_list").setValue(existingFavoritersListInPost)
-//                        })
-//                    }
-//                }
-//            })
         }
     }
 }
