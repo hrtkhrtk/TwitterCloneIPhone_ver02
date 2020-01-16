@@ -8,6 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		29899845B55C68944DAEDAD2 /* Pods_TwitterClone.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AC551B22421CF860BFB6724A /* Pods_TwitterClone.framework */; };
+		532CE36123D08E7200E84F85 /* SearchPostsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 532CE36023D08E7100E84F85 /* SearchPostsViewController.swift */; };
+		532CE36523D08F4E00E84F85 /* FollowingsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 532CE36423D08F4E00E84F85 /* FollowingsListViewController.swift */; };
+		532CE36723D08F9800E84F85 /* FollowersListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 532CE36623D08F9800E84F85 /* FollowersListViewController.swift */; };
+		532CE36923D08FDD00E84F85 /* FavoritesListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 532CE36823D08FDD00E84F85 /* FavoritesListViewController.swift */; };
+		532CE36B23D0903400E84F85 /* MyPostsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 532CE36A23D0903400E84F85 /* MyPostsViewController.swift */; };
+		532CE36D23D0A04000E84F85 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 532CE36C23D0A04000E84F85 /* GoogleService-Info.plist */; };
 		535794E723C640090075F035 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 535794E623C640090075F035 /* AppDelegate.swift */; };
 		535794E923C640090075F035 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 535794E823C640090075F035 /* ViewController.swift */; };
 		535794EC23C640090075F035 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 535794EA23C640090075F035 /* Main.storyboard */; };
@@ -27,7 +33,6 @@
 		5357951123C711E40075F035 /* PostTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5357950F23C711E40075F035 /* PostTableViewCell.xib */; };
 		5357951423C712750075F035 /* UserTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5357951223C712750075F035 /* UserTableViewCell.swift */; };
 		5357951523C712750075F035 /* UserTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5357951323C712750075F035 /* UserTableViewCell.xib */; };
-		5357951923C73DF60075F035 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5357951823C73DF60075F035 /* GoogleService-Info.plist */; };
 		5357951B23C74FB10075F035 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5357951A23C74FB10075F035 /* MainViewController.swift */; };
 		5357951D23C754CF0075F035 /* SidemenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5357951C23C754CF0075F035 /* SidemenuViewController.swift */; };
 		5357952323C76EB10075F035 /* PopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5357952223C76EB10075F035 /* PopupViewController.swift */; };
@@ -39,6 +44,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		532CE36023D08E7100E84F85 /* SearchPostsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPostsViewController.swift; sourceTree = "<group>"; };
+		532CE36423D08F4E00E84F85 /* FollowingsListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowingsListViewController.swift; sourceTree = "<group>"; };
+		532CE36623D08F9800E84F85 /* FollowersListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowersListViewController.swift; sourceTree = "<group>"; };
+		532CE36823D08FDD00E84F85 /* FavoritesListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesListViewController.swift; sourceTree = "<group>"; };
+		532CE36A23D0903400E84F85 /* MyPostsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPostsViewController.swift; sourceTree = "<group>"; };
+		532CE36C23D0A04000E84F85 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		535794E323C640080075F035 /* TwitterClone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TwitterClone.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		535794E623C640090075F035 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		535794E823C640090075F035 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -60,7 +71,6 @@
 		5357950F23C711E40075F035 /* PostTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PostTableViewCell.xib; sourceTree = "<group>"; };
 		5357951223C712750075F035 /* UserTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTableViewCell.swift; sourceTree = "<group>"; };
 		5357951323C712750075F035 /* UserTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserTableViewCell.xib; sourceTree = "<group>"; };
-		5357951823C73DF60075F035 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		5357951A23C74FB10075F035 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		5357951C23C754CF0075F035 /* SidemenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SidemenuViewController.swift; sourceTree = "<group>"; };
 		5357952223C76EB10075F035 /* PopupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupViewController.swift; sourceTree = "<group>"; };
@@ -116,7 +126,7 @@
 		535794E523C640090075F035 /* TwitterClone */ = {
 			isa = PBXGroup;
 			children = (
-				5357951823C73DF60075F035 /* GoogleService-Info.plist */,
+				532CE36C23D0A04000E84F85 /* GoogleService-Info.plist */,
 				535794E623C640090075F035 /* AppDelegate.swift */,
 				535794E823C640090075F035 /* ViewController.swift */,
 				535794EA23C640090075F035 /* Main.storyboard */,
@@ -145,6 +155,11 @@
 				5357954623C88DE40075F035 /* UserData.swift */,
 				5357954823C8E9D70075F035 /* Const.swift */,
 				5357954A23C8EAEE0075F035 /* ImageSelectViewController.swift */,
+				532CE36023D08E7100E84F85 /* SearchPostsViewController.swift */,
+				532CE36423D08F4E00E84F85 /* FollowingsListViewController.swift */,
+				532CE36623D08F9800E84F85 /* FollowersListViewController.swift */,
+				532CE36823D08FDD00E84F85 /* FavoritesListViewController.swift */,
+				532CE36A23D0903400E84F85 /* MyPostsViewController.swift */,
 			);
 			path = TwitterClone;
 			sourceTree = "<group>";
@@ -225,7 +240,7 @@
 				535794EE23C6400F0075F035 /* Assets.xcassets in Resources */,
 				5357951523C712750075F035 /* UserTableViewCell.xib in Resources */,
 				535794EC23C640090075F035 /* Main.storyboard in Resources */,
-				5357951923C73DF60075F035 /* GoogleService-Info.plist in Resources */,
+				532CE36D23D0A04000E84F85 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -285,6 +300,7 @@
 				5357951423C712750075F035 /* UserTableViewCell.swift in Sources */,
 				5357951023C711E40075F035 /* PostTableViewCell.swift in Sources */,
 				535794E923C640090075F035 /* ViewController.swift in Sources */,
+				532CE36523D08F4E00E84F85 /* FollowingsListViewController.swift in Sources */,
 				5357954523C888D50075F035 /* PostData.swift in Sources */,
 				535794FD23C664430075F035 /* SignupViewController.swift in Sources */,
 				535794FF23C664740075F035 /* RegisteringViewController.swift in Sources */,
@@ -293,13 +309,17 @@
 				5357950723C665110075F035 /* UsersListViewController.swift in Sources */,
 				5357951B23C74FB10075F035 /* MainViewController.swift in Sources */,
 				5357954B23C8EAEE0075F035 /* ImageSelectViewController.swift in Sources */,
+				532CE36B23D0903400E84F85 /* MyPostsViewController.swift in Sources */,
 				5357950523C664E60075F035 /* PurchasingCompleteViewController.swift in Sources */,
 				5357950D23C665770075F035 /* PolicyViewController.swift in Sources */,
 				535794E723C640090075F035 /* AppDelegate.swift in Sources */,
 				5357950123C6649C0075F035 /* SettingViewController.swift in Sources */,
+				532CE36923D08FDD00E84F85 /* FavoritesListViewController.swift in Sources */,
 				5357954723C88DE50075F035 /* UserData.swift in Sources */,
 				5357950B23C6655A0075F035 /* UserDetailViewController.swift in Sources */,
 				5357954923C8E9D70075F035 /* Const.swift in Sources */,
+				532CE36723D08F9800E84F85 /* FollowersListViewController.swift in Sources */,
+				532CE36123D08E7200E84F85 /* SearchPostsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
