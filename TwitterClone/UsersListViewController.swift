@@ -15,8 +15,8 @@ class UsersListViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     
     @IBAction func handleBackButton(_ sender: Any) {
-        // 全てのモーダルを閉じる
-        UIApplication.shared.keyWindow?.rootViewController?.dismiss(animated: true, completion: nil)
+        let navigation = self.storyboard?.instantiateInitialViewController() as! UINavigationController
+        self.present(navigation, animated: true, completion: nil)
     }
     
     @IBAction func handleSearchButton(_ sender: Any) {

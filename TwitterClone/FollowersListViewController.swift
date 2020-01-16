@@ -13,6 +13,8 @@ class FollowersListViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     
     @IBAction func handleBackButton(_ sender: Any) {
+        let navigation = self.storyboard?.instantiateInitialViewController() as! UINavigationController
+        self.present(navigation, animated: true, completion: nil)
     }
     
     override func viewDidLoad() {

@@ -117,20 +117,72 @@ extension SidemenuViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 2
+        return 8
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Default", for: indexPath)
-        cell.textLabel?.text = "Item \(indexPath.row)"
+        //cell.textLabel?.text = "Item \(indexPath.row)"
+        if indexPath.row == 0 {
+            cell.textLabel?.text = "posts"
+        } else if indexPath.row == 1 {
+            cell.textLabel?.text = "search_posts"
+        } else if indexPath.row == 2 {
+            cell.textLabel?.text = "search_users"
+        } else if indexPath.row == 3 {
+            cell.textLabel?.text = "followings_list"
+        } else if indexPath.row == 4 {
+            cell.textLabel?.text = "followers_list"
+        } else if indexPath.row == 5 {
+            cell.textLabel?.text = "favorites_list"
+        } else if indexPath.row == 6 {
+            cell.textLabel?.text = "my_posts"
+        } else if indexPath.row == 7 {
+            cell.textLabel?.text = "policy"
+        }
+        
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         delegate?.sidemenuViewController(self, didSelectItemAt: indexPath)
         
-        print("testtest")
-        print(indexPath.row)
+        //print("testtest")
+        //print(indexPath.row)
+        
+        if indexPath.row == 0 { // "posts"
+            let storyboard = UIStoryboard(name: "Main", bundle: nil) // 参考：http://crossbridge-lab.hatenablog.com/entry/2015/12/14/073000
+            let navigation = storyboard.instantiateInitialViewController() as! UINavigationController
+            self.present(navigation, animated: true, completion: nil)
+        } else if indexPath.row == 1 { // "search_posts"
+            let storyboard = UIStoryboard(name: "Main", bundle: nil) // 参考：http://crossbridge-lab.hatenablog.com/entry/2015/12/14/073000
+            let searchPostsViewController = storyboard.instantiateViewController(withIdentifier: "SearchPosts")
+            self.present(searchPostsViewController, animated: true, completion: nil)
+        } else if indexPath.row == 2 { // "search_users"
+            let storyboard = UIStoryboard(name: "Main", bundle: nil) // 参考：http://crossbridge-lab.hatenablog.com/entry/2015/12/14/073000
+            let usersListViewController = storyboard.instantiateViewController(withIdentifier: "UsersList")
+            self.present(usersListViewController, animated: true, completion: nil)
+        } else if indexPath.row == 3 { // "followings_list"
+            let storyboard = UIStoryboard(name: "Main", bundle: nil) // 参考：http://crossbridge-lab.hatenablog.com/entry/2015/12/14/073000
+            let followingsListViewController = storyboard.instantiateViewController(withIdentifier: "FollowingsList")
+            self.present(followingsListViewController, animated: true, completion: nil)
+        } else if indexPath.row == 4 { // "followers_list"
+            let storyboard = UIStoryboard(name: "Main", bundle: nil) // 参考：http://crossbridge-lab.hatenablog.com/entry/2015/12/14/073000
+            let followersListViewController = storyboard.instantiateViewController(withIdentifier: "FollowersList")
+            self.present(followersListViewController, animated: true, completion: nil)
+        } else if indexPath.row == 5 { // "favorites_list"
+            let storyboard = UIStoryboard(name: "Main", bundle: nil) // 参考：http://crossbridge-lab.hatenablog.com/entry/2015/12/14/073000
+            let favoritesListViewController = storyboard.instantiateViewController(withIdentifier: "FavoritesList")
+            self.present(favoritesListViewController, animated: true, completion: nil)
+        } else if indexPath.row == 6 { // "my_posts"
+            let storyboard = UIStoryboard(name: "Main", bundle: nil) // 参考：http://crossbridge-lab.hatenablog.com/entry/2015/12/14/073000
+            let myPostsViewController = storyboard.instantiateViewController(withIdentifier: "MyPosts")
+            self.present(myPostsViewController, animated: true, completion: nil)
+        } else if indexPath.row == 7 { // "policy"
+            let storyboard = UIStoryboard(name: "Main", bundle: nil) // 参考：http://crossbridge-lab.hatenablog.com/entry/2015/12/14/073000
+            let policyViewController = storyboard.instantiateViewController(withIdentifier: "Policy")
+            self.present(policyViewController, animated: true, completion: nil)
+        }
     }
 }
 

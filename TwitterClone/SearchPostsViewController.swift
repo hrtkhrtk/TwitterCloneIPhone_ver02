@@ -14,6 +14,8 @@ class SearchPostsViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     
     @IBAction func handleBackButton(_ sender: Any) {
+        let navigation = self.storyboard?.instantiateInitialViewController() as! UINavigationController
+        self.present(navigation, animated: true, completion: nil)
     }
     
     @IBAction func handleSearchButton(_ sender: Any) {

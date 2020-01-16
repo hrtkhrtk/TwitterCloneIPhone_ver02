@@ -291,7 +291,7 @@
                                 <rect key="frame" x="10" y="54" width="34" height="30"/>
                                 <state key="normal" title="Back"/>
                                 <connections>
-                                    <action selector="handleBackButton:" destination="jYU-KA-MSL" eventType="touchUpInside" id="rXV-Ry-mdJ"/>
+                                    <action selector="handleBackButton:" destination="jYU-KA-MSL" eventType="touchUpInside" id="hRF-7h-o3y"/>
                                 </connections>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="2x1-zN-0QI">
@@ -311,7 +311,6 @@
                         <viewLayoutGuide key="safeArea" id="OwP-Ik-zLM"/>
                     </view>
                     <connections>
-                        <outlet property="handleBackButton" destination="38v-zw-6UL" id="YLD-mY-iGt"/>
                         <outlet property="tableView" destination="2x1-zN-0QI" id="5hv-aq-7p1"/>
                     </connections>
                 </viewController>
@@ -555,7 +554,7 @@
         <!--Policy View Controller-->
         <scene sceneID="5Ds-5s-ej8">
             <objects>
-                <viewController id="zUa-Yw-Pbw" customClass="PolicyViewController" customModule="TwitterClone" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Policy" id="zUa-Yw-Pbw" customClass="PolicyViewController" customModule="TwitterClone" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="hTu-Lk-TOX">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
