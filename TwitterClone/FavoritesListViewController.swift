@@ -159,6 +159,10 @@ class FavoritesListViewController: UIViewController, UITableViewDataSource, UITa
                                         
                                         // 削除したところに更新済みのデータを追加する // どのみちsortするが
                                         self.postArray.insert(postDataClassNew, at: index)
+                                        self.postArray.sort(by: {$0.createdAt! > $1.createdAt!})
+                                        
+                                        // TableViewを再表示する
+                                        self.tableView.reloadData()
                                     } else {
                                         
                                         Database.database().reference().child("users").child(favorite_element["user_id"]!).observeSingleEvent(of: .value, with: { (snapshotInsideInsideInside) in
@@ -175,17 +179,17 @@ class FavoritesListViewController: UIViewController, UITableViewDataSource, UITa
                                                                          iconImageString:iconImageString,
                                                                          myId:user.uid)
                                             self.postArray.append(postDataClass)
-//                                            self.postArray.sort(by: {$0.createdAt! > $1.createdAt!})
-//
-//                                            // TableViewを再表示する
-//                                            self.tableView.reloadData()
+                                            self.postArray.sort(by: {$0.createdAt! > $1.createdAt!})
+
+                                            // TableViewを再表示する
+                                            self.tableView.reloadData()
                                         })
                                     }
 
-                                    self.postArray.sort(by: {$0.createdAt! > $1.createdAt!})
+                                    //self.postArray.sort(by: {$0.createdAt! > $1.createdAt!}) // self.postArray.appendよりも先に実行されてしまう。
                                     
                                     // TableViewを再表示する
-                                    self.tableView.reloadData()
+                                    //self.tableView.reloadData() // self.postArray.appendよりも先に実行されてしまう。
                                 })
                             }
                         })
