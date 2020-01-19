@@ -15,10 +15,15 @@ class SearchPostsViewController: UIViewController, UITableViewDataSource, UITabl
     var postArray: [PostData] = []
     
     // DatabaseのobserveEventの登録状態を表す
-    var postRefObserving = false
+    var searchedPostRefObserving = false
     var allPostRefObserving = false
     
     //var currentUserUid = ""
+    var previousSearchText = ""
+    var postsListSearchedKeys = [[String: String]]()
+    var postsListAllKeys = [String]()
+    
+//    var isAllPostsDataSet = false // setは過去分詞
     
     @IBOutlet weak var searchTextField: UITextField!
     @IBOutlet weak var tableView: UITableView!
@@ -34,28 +39,50 @@ class SearchPostsViewController: UIViewController, UITableViewDataSource, UITabl
         
         if let searchText = searchTextField.text {
             if searchText.isEmpty {
+                self.deleteAllPostsWithRemovingObservers()
                 self.deleteSearchedPostsWithRemovingObservers()
                 self.showAllPosts()
                 SVProgressHUD.showError(withStatus: "入力して下さい")
             } else {
-                self.deleteAllPostsWithRemovingObservers()
+                //self.deleteAllPostsWithRemovingObservers()
+                
+                // オブザーバーを削除する
+                if self.allPostRefObserving == true {
+                    //Database.database().reference().child("posts").removeAllObservers()
+                    
+                    for user_id in self.postsListAllKeys {
+                        Database.database().reference().child("posts").child(user_id).removeAllObservers()
+                    }
+                    self.postsListAllKeys.removeAll()
+                    
+                    // DatabaseのobserveEventが上記コードにより解除されたため
+                    // falseとする
+                    self.allPostRefObserving = false
+                }
                 
                 let user = Auth.auth().currentUser
                 if let user = user {
                     //self.currentUserUid = user.uid
                     
-                    self.postArray.removeAll() // たぶん冗長
-                    //print("testn13")
-                    // TableViewを再表示する
-                    self.tableView.reloadData() // たぶん冗長
-                    
-                    if self.postRefObserving == false {
-                        //print("testn04 self.postRefObserving == false handleSearchButton")
-                        //print(self.postRefObserving) // test
-                        //print(self.allPostRefObserving) // test
+                    if (self.searchedPostRefObserving == false) || (searchText != self.previousSearchText) {
+                        // オブザーバーを削除する
+                        if self.searchedPostRefObserving == true {
+                            //Database.database().reference().child("posts").removeAllObservers()
+                            
+                            for refDic in self.postsListSearchedKeys {
+                                Database.database().reference().child("posts").child(refDic["userId"]!).child(refDic["postId"]!).removeAllObservers()
+                            }
+                            self.postsListSearchedKeys.removeAll()
+                            
+                            // DatabaseのobserveEventが上記コードにより解除されたため
+                            // falseとする
+                            self.searchedPostRefObserving = false
+                        }
                         
-                        Database.database().reference().child("posts").observe(.value, with: { (snapshot) in
+                        //Database.database().reference().child("posts").observe(.value, with: { (snapshot) in
+                        Database.database().reference().child("posts").observeSingleEvent(of: .value, with: { (snapshot) in
                             self.postArray.removeAll()
+                            //self.isAllPostsDataSet = false
                             
                             let posts_list_all = (snapshot.value as? [String: [String: [String: Any]]]) ?? [String: [String: [String: Any]]]() // ここはnullかも
                             
@@ -67,27 +94,85 @@ class SearchPostsViewController: UIViewController, UITableViewDataSource, UITabl
                                     
                                     if text.contains(searchText) { // ここで検索している（ここが検索の全て）。改善の余地があるかも。 // 現状だと大文字と小文字を区別
                                         let created_at = (post_each["created_at"] as! Int64) // ここは必ず存在
-                                        let favoriters_list = (post_each["favoriters_list"] as? [String]) ?? [String]()
+//                                        let favoriters_list = (post_each["favoriters_list"] as? [String]) ?? [String]()
                                         
                                         Database.database().reference().child("users").child(user_id).observeSingleEvent(of: .value, with: { (snapshotInside) in
                                             let mapInside = snapshotInside.value as! [String: Any] // ここは必ず存在
                                             let iconImageString = mapInside["icon_image"] as! String
                                             let nickname = mapInside["nickname"] as! String
                                             
-                                            let postDataClass = PostData(nickname:nickname,
-                                                                         text:text,
-                                                                         createdAt:created_at,
-                                                                         favoritersList:favoriters_list,
-                                                                         userId:user_id,
-                                                                         postId:post_id,
-                                                                         iconImageString:iconImageString,
-                                                                         myId:user.uid)
-                                            self.postArray.append(postDataClass)
-                                            //print("testn11")
-                                            self.postArray.sort(by: {$0.createdAt! > $1.createdAt!})
+//                                            let postDataClass = PostData(nickname:nickname,
+//                                                                         text:text,
+//                                                                         createdAt:created_at,
+//                                                                         favoritersList:favoriters_list,
+//                                                                         userId:user_id,
+//                                                                         postId:post_id,
+//                                                                         iconImageString:iconImageString,
+//                                                                         myId:user.uid)
+//                                            self.postArray.append(postDataClass)
                                             
-                                            // TableViewを再表示する
-                                            self.tableView.reloadData()
+                                            let refDic = ["userId": user_id, "postId": post_id]
+                                            self.postsListSearchedKeys.append(refDic)
+                                            Database.database().reference().child("posts").child(user_id).child(post_id).observe(.value, with: { snapshotInsideInside in
+                                                let post_each_InsideInside = snapshotInsideInside.value as! [String: Any] // ここは必ず存在
+                                                let favoriters_list_InsideInside = (post_each_InsideInside["favoriters_list"] as? [String]) ?? [String]()
+                                                let post_id_InsideInside = snapshotInsideInside.key as! String
+                                                
+                                                // 保持している配列からidが同じものを探す // 存在しないこともある
+                                                var index: Int = -1
+                                                for post in self.postArray {
+                                                    if post.postId == post_id_InsideInside {
+                                                        index = self.postArray.firstIndex(of: post)!
+                                                        break
+                                                    }
+                                                }
+                                                
+                                                if index >= 0 { // 存在すれば入れ替える
+                                                    let postDataClassOld = self.postArray[index]
+                                                    
+                                                    let postDataClassNew = PostData(nickname:postDataClassOld.nickname!,
+                                                                                    text:postDataClassOld.text!,
+                                                                                    createdAt:postDataClassOld.createdAt!,
+                                                                                    favoritersList:favoriters_list_InsideInside,
+                                                                                    userId:postDataClassOld.userId!,
+                                                                                    postId:postDataClassOld.postId!,
+                                                                                    iconImageString:postDataClassOld.iconImageString!,
+                                                                                    myId:user.uid)
+                                                    
+                                                    // 差し替えるため一度削除する
+                                                    self.postArray.remove(at: index)
+                                                    
+                                                    // 削除したところに更新済みのデータを追加する // ここではsortしない
+                                                    self.postArray.insert(postDataClassNew, at: index)
+                                                    //self.postArray.sort(by: {$0.createdAt! > $1.createdAt!})
+                                                    
+                                                    // TableViewを再表示する
+                                                    self.tableView.reloadData()
+                                                } else { // 存在しなければ代入する
+                                                    let postDataClass = PostData(nickname:nickname,
+                                                                                 text:text,
+                                                                                 createdAt:created_at,
+                                                                                 favoritersList:favoriters_list_InsideInside,
+                                                                                 userId:user_id,
+                                                                                 postId:post_id,
+                                                                                 iconImageString:iconImageString,
+                                                                                 myId:user.uid)
+                                                    self.postArray.append(postDataClass)
+                                                    
+                                                    self.postArray.sort(by: {$0.createdAt! > $1.createdAt!})
+                                                    
+                                                    // TableViewを再表示する
+                                                    self.tableView.reloadData()
+                                                    
+                                                    //self.isAllPostsDataSet = false
+                                                }
+                                            })
+//                                            self.postArray.sort(by: {$0.createdAt! > $1.createdAt!})
+//
+//                                            // TableViewを再表示する
+//                                            self.tableView.reloadData()
+//
+//                                            //self.isAllPostsDataSet = false
                                         })
                                     }
                                 }
@@ -96,11 +181,13 @@ class SearchPostsViewController: UIViewController, UITableViewDataSource, UITabl
                         
                         // DatabaseのobserveEventが上記コードにより登録されたため
                         // trueとする
-                        self.postRefObserving = true
+                        self.searchedPostRefObserving = true
                     }
                 }
             }
+            self.previousSearchText = searchText
         } else {
+            self.deleteAllPostsWithRemovingObservers()
             self.deleteSearchedPostsWithRemovingObservers()
             self.showAllPosts()
             SVProgressHUD.showError(withStatus: "入力して下さい")
@@ -133,29 +220,7 @@ class SearchPostsViewController: UIViewController, UITableViewDataSource, UITabl
         let user = Auth.auth().currentUser
         if let user = user { // 別にログインしている必要性はないが // let postDataClassで必要だった
             self.showAllPosts()
-                //2回
-                //「
-                // let user = Auth.auth().currentUser
-                // if let user = user {}
-                // 」
-                // としているが、ひとまず放置（特に問題もないし）
         } else {
-//            if self.allPostRefObserving == true {
-//                // ログアウトを検出したら、一旦テーブルをクリアしてオブザーバーを削除する。
-//                // テーブルをクリアする
-//                self.postArray.removeAll()
-//                self.tableView.reloadData()
-//
-//                // オブザーバーを削除する // これが必要なのか不明
-//                Database.database().reference().child("posts").removeAllObservers()
-//
-//                //self.currentUserUid = ""
-//
-//                // DatabaseのobserveEventが上記コードにより解除されたため
-//                // falseとする
-//                self.allPostRefObserving = false
-//            }
-            
             // ログアウトを検出したら、一旦テーブルをクリアしてオブザーバーを削除する。
             self.deleteAllPostsWithRemovingObservers()
             self.deleteSearchedPostsWithRemovingObservers()
@@ -244,18 +309,13 @@ class SearchPostsViewController: UIViewController, UITableViewDataSource, UITabl
         if let user = user { // 別にログインしている必要性はないが // let postDataClassで必要だった
             //self.currentUserUid = user.uid
             
-            self.postArray.removeAll() // たぶん冗長 // viewWillAppearで必要だからそんなことなかった
-            //print("testn14")
+//            self.postArray.removeAll() // たぶん冗長 // viewWillAppearで必要だからそんなことなかった
             // TableViewを再表示する
-            self.tableView.reloadData() // たぶん冗長 // viewWillAppearで必要だからそんなことなかった
+//            self.tableView.reloadData() // たぶん冗長 // viewWillAppearで必要だからそんなことなかった
             
             if self.allPostRefObserving == false {
-                //print("testn03 self.allPostRefObserving == false showAllPosts")
-                //print(self.postRefObserving) // test
-                //print(self.allPostRefObserving) // test
-                
-                //Database.database().reference().child("posts").observeSingleEvent(of: .value, with: { (snapshot) in // ひとまずSingleValueEventで
-                Database.database().reference().child("posts").observe(.value, with: { (snapshot) in
+                //Database.database().reference().child("posts").observe(.value, with: { (snapshot) in
+                Database.database().reference().child("posts").observeSingleEvent(of: .value, with: { (snapshot) in
                     self.postArray.removeAll()
                     
                     let posts_list_all = (snapshot.value as? [String: [String: [String: Any]]]) ?? [String: [String: [String: Any]]]() // ここはnullかも
@@ -293,6 +353,55 @@ class SearchPostsViewController: UIViewController, UITableViewDataSource, UITabl
                             }
                         })
                     }
+                    
+                    // ここは動作しない予定だが安全のため
+                    for user_id in self.postsListAllKeys {
+                        print("DEBUG_PRINT: ここは動作しない予定だが安全のため")
+                        Database.database().reference().child("posts").child(user_id).removeAllObservers()
+                    }
+                    self.postsListAllKeys.removeAll()
+                    
+                    self.postsListAllKeys = [String](posts_list_all.keys) // 参考： https://qiita.com/keisei_1092/items/c9353c91a90c372bbfac
+                    
+                    for user_id in posts_list_all.keys {
+                        Database.database().reference().child("posts").child(user_id).observe(.childChanged, with: { snapshot in
+                            let post_each = snapshot.value as! [String: Any] // ここは必ず存在
+                            let favoriters_list = (post_each["favoriters_list"] as? [String]) ?? [String]()
+                            let post_id = snapshot.key as! String
+                            
+                            // 保持している配列からidが同じものを探す // 存在しないこともある
+                            var index: Int = -1
+                            for post in self.postArray {
+                                if post.postId == post_id {
+                                    index = self.postArray.firstIndex(of: post)!
+                                    break
+                                }
+                            }
+                            
+                            if index >= 0 { // 存在すれば入れ替える
+                                let postDataClassOld = self.postArray[index]
+                                
+                                let postDataClassNew = PostData(nickname:postDataClassOld.nickname!,
+                                                                text:postDataClassOld.text!,
+                                                                createdAt:postDataClassOld.createdAt!,
+                                                                favoritersList:favoriters_list,
+                                                                userId:postDataClassOld.userId!,
+                                                                postId:postDataClassOld.postId!,
+                                                                iconImageString:postDataClassOld.iconImageString!,
+                                                                myId:user.uid)
+
+                                // 差し替えるため一度削除する
+                                self.postArray.remove(at: index)
+                                
+                                // 削除したところに更新済みのデータを追加する // ここではsortしない
+                                self.postArray.insert(postDataClassNew, at: index)
+                                //self.postArray.sort(by: {$0.createdAt! > $1.createdAt!})
+                                
+                                // TableViewを再表示する
+                                self.tableView.reloadData()
+                            }
+                        })
+                    }
                 })
                 
                 // DatabaseのobserveEventが上記コードにより登録されたため
@@ -310,11 +419,12 @@ class SearchPostsViewController: UIViewController, UITableViewDataSource, UITabl
         
         // オブザーバーを削除する
         if self.allPostRefObserving == true {
-            //print("testn01 self.allPostRefObserving deleteAllPostsWithRemovingObservers")
-            //print(self.postRefObserving) // test
-            //print(self.allPostRefObserving) // test
+            //Database.database().reference().child("posts").removeAllObservers()
             
-            Database.database().reference().child("posts").removeAllObservers()
+            for user_id in self.postsListAllKeys {
+                Database.database().reference().child("posts").child(user_id).removeAllObservers()
+            }
+            self.postsListAllKeys.removeAll()
             
             // DatabaseのobserveEventが上記コードにより解除されたため
             // falseとする
@@ -329,16 +439,17 @@ class SearchPostsViewController: UIViewController, UITableViewDataSource, UITabl
         self.tableView.reloadData()
         
         // オブザーバーを削除する
-        if self.postRefObserving == true {
-            //print("testn02 self.postRefObserving deleteSearchedPostsWithRemovingObservers")
-            //print(self.postRefObserving) // test
-            //print(self.allPostRefObserving) // test
+        if self.searchedPostRefObserving == true {
+            //Database.database().reference().child("posts").removeAllObservers()
             
-            Database.database().reference().child("posts").removeAllObservers()
+            for refDic in self.postsListSearchedKeys {
+                Database.database().reference().child("posts").child(refDic["userId"]!).child(refDic["postId"]!).removeAllObservers()
+            }
+            self.postsListSearchedKeys.removeAll()
             
             // DatabaseのobserveEventが上記コードにより解除されたため
             // falseとする
-            self.postRefObserving = false
+            self.searchedPostRefObserving = false
         }
     }
 }

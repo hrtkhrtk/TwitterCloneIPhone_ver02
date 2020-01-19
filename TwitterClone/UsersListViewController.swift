@@ -39,6 +39,7 @@ class UsersListViewController: UIViewController, UITableViewDataSource, UITableV
         
         if let searchText = searchTextField.text {
             if searchText.isEmpty {
+                self.deleteAllUsersWithRemovingObservers()
                 self.deleteSearchedUsersWithRemovingObservers()
                 self.showAllUsers()
                 SVProgressHUD.showError(withStatus: "入力して下さい")
@@ -142,6 +143,7 @@ class UsersListViewController: UIViewController, UITableViewDataSource, UITableV
             }
             self.previousSearchText = searchText
         } else {
+            self.deleteAllUsersWithRemovingObservers()
             self.deleteSearchedUsersWithRemovingObservers()
             self.showAllUsers()
             SVProgressHUD.showError(withStatus: "入力して下さい")
