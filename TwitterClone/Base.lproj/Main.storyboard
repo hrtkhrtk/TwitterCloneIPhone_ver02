@@ -784,6 +784,7 @@
                     <connections>
                         <outlet property="backgroundImageView" destination="tKg-n8-WhJ" id="rYf-gD-IsJ"/>
                         <outlet property="createdAtTextLabel" destination="VcK-XS-GC3" id="gLc-xr-GcC"/>
+                        <outlet property="followButton" destination="Tbt-3v-BFb" id="yVc-Yr-WH0"/>
                         <outlet property="followersNumTextLabel" destination="v1C-VF-pjS" id="55J-Gm-0bD"/>
                         <outlet property="followingsNumTextLabel" destination="m5b-d6-uj1" id="P2m-6M-lXG"/>
                         <outlet property="iconImageView" destination="6VJ-m8-wat" id="Hf1-Gy-9UA"/>
