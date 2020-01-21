@@ -9,6 +9,7 @@
 import UIKit
 import Firebase
 import UserNotifications
+import PAYJP
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate {
@@ -27,6 +28,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         center.delegate = self
         
         FirebaseApp.configure()
+        
+        PAYJPSDK.publicKey = "pk_test_0ca997049dcd98ddfbc2f04a"
+        PAYJPSDK.locale = Locale.current
+        
         return true
     }
 

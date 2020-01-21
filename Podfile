@@ -11,5 +11,8 @@ target 'TwitterClone' do
   pod 'Firebase/Auth'
   pod 'Firebase/Database'
   pod 'SVProgressHUD','2.2.5'
+  pod 'SwiftyJSON'
+  pod 'Alamofire'
+  pod 'PAYJP'
 
 end

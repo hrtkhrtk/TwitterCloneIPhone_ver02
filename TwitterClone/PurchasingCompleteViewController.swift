@@ -11,16 +11,22 @@ import Firebase
 
 class PurchasingCompleteViewController: UIViewController {
     
+    var price:Int!
+    var purchaseTo:Int64!
+    
     @IBOutlet weak var purchaseToTextLabel: UILabel!
     @IBOutlet weak var priceTextLabel: UILabel!
     
     @IBAction func handleToMainButton(_ sender: Any) {
+        let navigation = self.storyboard?.instantiateInitialViewController() as! UINavigationController
+        self.present(navigation, animated: true, completion: nil)
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        self.purchaseToTextLabel.text = Const.getDateTime(time:self.purchaseTo, format:"yyyy/MM/dd HH:mm:ss")
+        self.priceTextLabel.text = String(self.price)
     }
     
     override func viewDidAppear(_ animated: Bool) {
