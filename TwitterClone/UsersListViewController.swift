@@ -21,8 +21,6 @@ class UsersListViewController: UIViewController, UITableViewDataSource, UITableV
     var currentUserUid = ""
     var previousSearchText = ""
     
-    // 一度setされたら、この両者が共にfalse/共にtrueとなることはない。
-//    var isSearchedUsersDataSet = false // setは過去分詞
     var isAllUsersDataSet = false // setは過去分詞
     
     @IBOutlet weak var searchTextField: UITextField!
@@ -44,9 +42,6 @@ class UsersListViewController: UIViewController, UITableViewDataSource, UITableV
                 self.showAllUsers()
                 SVProgressHUD.showError(withStatus: "入力して下さい")
             } else {
-                //self.deleteSearchedUsersWithRemovingObservers()
-                //self.deleteAllUsersWithRemovingObservers()
-                
                 // オブザーバーを削除する
                 if self.allUserRefObserving == true {
                     Database.database().reference().child("users").child(self.currentUserUid).child("followings_list").removeAllObservers()
@@ -61,9 +56,6 @@ class UsersListViewController: UIViewController, UITableViewDataSource, UITableV
                     self.currentUserUid = user.uid
                     
                     if (self.searchedUserRefObserving == false) || (searchText != self.previousSearchText) {
-                    //if self.searchedUserRefObserving == false { // これでいいか不明 // よくないっぽい
-                        //self.deleteSearchedUsersWithRemovingObservers() // これでいいか不明
-                        
                         // オブザーバーを削除する
                         if self.searchedUserRefObserving == true {
                             Database.database().reference().child("users").child(self.currentUserUid).child("followings_list").removeAllObservers()
@@ -76,27 +68,6 @@ class UsersListViewController: UIViewController, UITableViewDataSource, UITableV
                         Database.database().reference().child("users").child(user.uid).child("followings_list").observe(.value, with: { (snapshot) in
                             let followings_list = (snapshot.value as? [String]) ?? [String]()
                             
-//                            if (self.isSearchedUsersDataSet) && (searchText == self.previousSearchText) {
-//                                print("test 2回同じ検索ならここ")
-//                                for (index, userDataClassOld) in zip(self.userArray.indices, self.userArray) { // enumerated()はやめた // 参考：https://qiita.com/a-beco/items/0fcfa69cca20a0ba601c
-//
-//                                    // 差し替えるため一度削除する
-//                                    self.userArray.remove(at: index)
-//
-//                                    let userDataClassNew = UserData(nickname: userDataClassOld.nickname!,
-//                                                                    idForSearch: userDataClassOld.idForSearch!,
-//                                                                    selfIntroduction: userDataClassOld.selfIntroduction!,
-//                                                                    userId: userDataClassOld.userId!,
-//                                                                    iconImageString: userDataClassOld.iconImageString!,
-//                                                                    followingsList: followings_list)
-//
-//                                    // 削除したところに更新済みのデータを追加する
-//                                    self.userArray.insert(userDataClassNew, at: index)
-//                                }
-//
-//                                // TableViewを再表示する
-//                                self.tableView.reloadData()
-//                            } else {
                             self.userArray.removeAll()
                             self.isAllUsersDataSet = false
                             
@@ -129,10 +100,8 @@ class UsersListViewController: UIViewController, UITableViewDataSource, UITableV
                                 // TableViewを再表示する
                                 self.tableView.reloadData()
                                 
-//                                    self.isSearchedUsersDataSet = true
                                 self.isAllUsersDataSet = false
                             })
-//                            }
                         })
                         
                         // DatabaseのobserveEventが上記コードにより登録されたため
@@ -169,13 +138,6 @@ class UsersListViewController: UIViewController, UITableViewDataSource, UITableV
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         print("DEBUG_PRINT: viewWillAppear")
-        
-//        // currentUserがnilならログインしていない
-//        if Auth.auth().currentUser == nil {
-//            // ログインしていないときの処理
-//            let loginViewController = self.storyboard?.instantiateViewController(withIdentifier: "Login")
-//            self.present(loginViewController!, animated: true, completion: nil)
-//        }
         
         let user = Auth.auth().currentUser
         if let user = user {
@@ -285,7 +247,7 @@ class UsersListViewController: UIViewController, UITableViewDataSource, UITableV
                             // 差し替えるため一度削除する
                             self.userArray.remove(at: index)
                             
-                            var userDataClassNew = UserData(nickname: userDataClassOld.nickname!,
+                            let userDataClassNew = UserData(nickname: userDataClassOld.nickname!,
                                                             idForSearch: userDataClassOld.idForSearch!,
                                                             selfIntroduction: userDataClassOld.selfIntroduction!,
                                                             userId: userDataClassOld.userId!,
@@ -330,7 +292,6 @@ class UsersListViewController: UIViewController, UITableViewDataSource, UITableV
                             self.tableView.reloadData()
                             
                             self.isAllUsersDataSet = true
-//                            self.isSearchedUsersDataSet = false
                         })
                     }
                 })

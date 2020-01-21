@@ -19,7 +19,6 @@ class UserDetailViewController: UIViewController, UITableViewDataSource, UITable
     var postRefObserving = false
     
     var currentUserUidForUserRef = ""
-//    var currentUserUidForPostRef = ""
     
     var isUserDataSet = false // setは過去分詞
     
@@ -42,9 +41,6 @@ class UserDetailViewController: UIViewController, UITableViewDataSource, UITable
     @IBAction func handleBackButton(_ sender: Any) {
         // 画面を閉じる
         self.dismiss(animated: true, completion: nil)
-        
-        // 全てのモーダルを閉じる
-        //UIApplication.shared.keyWindow?.rootViewController?.dismiss(animated: true, completion: nil)
     }
     
     @IBAction func handleFollowButton(_ sender: Any) {
@@ -109,7 +105,6 @@ class UserDetailViewController: UIViewController, UITableViewDataSource, UITable
         let user = Auth.auth().currentUser
         if let user = user {
             self.currentUserUidForUserRef = user.uid
-//            self.currentUserUidForPostRef = user.uid
             
             self.postArray.removeAll()
             // TableViewを再表示する
@@ -253,7 +248,6 @@ class UserDetailViewController: UIViewController, UITableViewDataSource, UITable
                         
                         // 削除したところに更新済みのデータを追加する // ここではsortしない
                         self.postArray.insert(postDataClassNew, at: index)
-                        //self.postArray.sort(by: {$0.createdAt! > $1.createdAt!})
                         
                         // TableViewを再表示する
                         self.tableView.reloadData()
@@ -284,8 +278,6 @@ class UserDetailViewController: UIViewController, UITableViewDataSource, UITable
                 // オブザーバーを削除する // これが必要なのか不明
                 Database.database().reference().child("posts").child(self.userData.userId!).removeAllObservers()
                 
-//                self.currentUserUidForPostRef = ""
-                
                 // DatabaseのobserveEventが上記コードにより解除されたため
                 // falseとする
                 self.postRefObserving = false
@@ -296,17 +288,6 @@ class UserDetailViewController: UIViewController, UITableViewDataSource, UITable
             self.present(loginViewController!, animated: true, completion: nil)
         }
     }
-    
-//    override func viewDidAppear(_ animated: Bool) {
-//        super.viewDidAppear(animated)
-//
-//        // currentUserがnilならログインしていない
-//        if Auth.auth().currentUser == nil {
-//            // ログインしていないときの処理
-//            let loginViewController = self.storyboard?.instantiateViewController(withIdentifier: "Login")
-//            self.present(loginViewController!, animated: true, completion: nil)
-//        }
-//    }
     
     override func viewWillDisappear(_ animated: Bool) {
         if self.userRefObserving == true {
@@ -327,8 +308,6 @@ class UserDetailViewController: UIViewController, UITableViewDataSource, UITable
             
             // オブザーバーを削除する // これが必要なのか不明
             Database.database().reference().child("posts").child(self.userData.userId!).removeAllObservers()
-            
-//            self.currentUserUidForPostRef = ""
             
             // DatabaseのobserveEventが上記コードにより解除されたため
             // falseとする

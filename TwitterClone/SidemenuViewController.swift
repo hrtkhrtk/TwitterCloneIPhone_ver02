@@ -122,7 +122,7 @@ extension SidemenuViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Default", for: indexPath)
-        //cell.textLabel?.text = "Item \(indexPath.row)"
+        
         if indexPath.row == 0 {
             cell.textLabel?.text = "posts"
         } else if indexPath.row == 1 {
@@ -146,9 +146,6 @@ extension SidemenuViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         delegate?.sidemenuViewController(self, didSelectItemAt: indexPath)
-        
-        //print("testtest")
-        //print(indexPath.row)
         
         if indexPath.row == 0 { // "posts"
             let storyboard = UIStoryboard(name: "Main", bundle: nil) // 参考：http://crossbridge-lab.hatenablog.com/entry/2015/12/14/073000

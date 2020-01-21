@@ -59,9 +59,7 @@ class PurchasingViewController: UIViewController {
                     let interval_Int64 = input_time - self.availableTo!
                     let interval_Double = Double(interval_Int64) // iPhoneのほとんどは（既に）64bit
                     let price_double = interval_Double / (24*60*60*1000) * 10
-                    //let price:Int = Int(ceil(price_double)) // 1日10円（24時間10円）
                     price = Int(ceil(price_double)) // 1日10円（24時間10円）
-                    //self.priceTextLabel.text = String(price)
                 } else {
                     self.priceTextLabel.text = String(0)
                     SVProgressHUD.showError(withStatus: "available_toより先の日付を入力してください")
@@ -79,11 +77,6 @@ class PurchasingViewController: UIViewController {
                             switch result {
                             case .success(let token):
                                 DispatchQueue.main.async {
-                                    //self?.labelTokenId.text = token.identifer
-                                    //                        self?.tableView.reloadData()
-                                    //                        self?.showToken(token: token)
-                                    
-                                    //print(token.identifer) // test
                                     let dataToSend_Map = ["payjp-token": token.identifer,
                                                           "price": String(price),
                                                           "purchaseTo": String(input_time),
@@ -102,20 +95,6 @@ class PurchasingViewController: UIViewController {
                                                                 if result_Map["status"] == "success" {
                                                                     let purchasingCompleteViewController = self?.storyboard?.instantiateViewController(withIdentifier: "PurchasingComplete") as! PurchasingCompleteViewController
                                                                     purchasingCompleteViewController.price = Int(result_Map["price"].string!)
-//                                                                    print("test result_Map[price]") // test
-//                                                                    print(result_Map["price"]) // test // 60
-//                                                                    print(result_Map["price"].string) // test // Optional("60")
-//                                                                    print("test result_Map[purchaseTo]") // test
-//                                                                    print(result_Map["purchaseTo"]) // test // 1581386399000
-//                                                                    print(type(of: result_Map["purchaseTo"])) // test // JSON
-//                                                                    print(result_Map["purchaseTo"].string) // test // nil
-//                                                                    print(result_Map["purchaseTo"].int) // test // Optional(1582340399000)
-//                                                                    print(result_Map["purchaseTo"].int64) // test // Optional(1582775999000)
-//                                                                    //print(result_Map["purchaseTo"].string!) // test // error
-//                                                                    //print(Int(result_Map["purchaseTo"].string!)) // test // error
-//                                                                    //print(Int64(result_Map["purchaseTo"].string!)) // test // error
-                                                                    //purchasingCompleteViewController.purchaseTo = Int64(result_Map["purchaseTo"].string!)
-                                                                    //purchasingCompleteViewController.purchaseTo = Int64(Int(result_Map["purchaseTo"].string!)) // iPhoneのほとんどは（既に）64bit
                                                                     purchasingCompleteViewController.purchaseTo = result_Map["purchaseTo"].int64
                                                                     self!.present(purchasingCompleteViewController, animated: true, completion: nil)
                                                                 } else {
@@ -133,11 +112,6 @@ class PurchasingViewController: UIViewController {
                                     print("[errorResponse] \(payError.description)")
                                     SVProgressHUD.showError(withStatus: "payError")
                                 }
-                                
-//                                DispatchQueue.main.async {
-//                                    //self?.labelTokenId.text = ""
-//                                    //                        self?.showError(error: error)
-//                                }
                             }
                     }
                 }
@@ -191,37 +165,6 @@ class PurchasingViewController: UIViewController {
         let input_time:Int64 = Int64(self.datePicker.date.timeIntervalSince1970*1000)
         
         if input_time >= self.availableTo {
-//            //print(input_time) // test
-//            //print(self.availableTo) // test
-//            //print(input_time - self.availableTo) // test
-//            print(input_time - self.availableTo!) // test
-//            let interval_Int64 = input_time - self.availableTo! // test
-//            //print(interval / (24*60*60*1000)) // test
-//            //print(interval / (24*60*60*1000) * 10) // test
-//            print(type(of: interval_Int64)) // test // Int64
-//            //let price_double = interval_Int64 / (24*60*60*1000) * 10 // test
-//            //print(price_double) // test // 0
-//            //print(type(of: price_double)) // test // Int64
-//            //let interval_Int = Int(interval_Int64) // test
-//            //print(interval_Int) // test
-//            //print(type(of: interval_Int)) // test // Int
-//            //let price_double = interval_Int / (24*60*60*1000) * 10 // test
-//            //print(price_double) // test // 0
-//            //print(type(of: price_double)) // test // Int
-//            let interval_Double = Double(interval_Int64) // test
-//            //print(interval_Double) // test
-//            //print(type(of: interval_Double)) // test // Double
-//            let price_double = interval_Double / (24*60*60*1000) * 10 // test
-//            print(price_double) // test
-//            //print(type(of: price_double)) // test // Double
-//            let price_double_ceiled = ceil(price_double) // test
-//            print(price_double_ceiled) // test
-//            print(type(of: price_double_ceiled)) // test // Double
-//            let price:Int = Int(price_double_ceiled) // test
-//            print(price) // test
-//            print(type(of: price)) // test // Int
-            
-            
             let interval_Int64 = input_time - self.availableTo!
             let interval_Double = Double(interval_Int64) // iPhoneのほとんどは（既に）64bit
             let price_double = interval_Double / (24*60*60*1000) * 10

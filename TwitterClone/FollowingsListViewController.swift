@@ -93,10 +93,6 @@ class FollowingsListViewController: UIViewController, UITableViewDataSource, UIT
                             self.tableView.reloadData()
                         })
                     }
-                    //self.userArray.sort(by: {$0.idForSearch! > $1.idForSearch!}) // データ取得が間に合ってないっぽい
-                    
-                    // TableViewを再表示する
-                    //self.tableView.reloadData() // データ取得が間に合ってないっぽい
                 })
                 
                 // DatabaseのobserveEventが上記コードにより登録されたため

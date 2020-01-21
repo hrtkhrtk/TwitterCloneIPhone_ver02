@@ -40,7 +40,7 @@ class SignupViewController: UIViewController {
             }
             
             Database.database().reference().child("id_for_search_list").observeSingleEvent(of: .value, with: { (snapshot) in
-                var data = (snapshot.value as? [String: String]) ?? [String: String]() // ここは存在するとみなしていいと思うが安全のため
+                let data = (snapshot.value as? [String: String]) ?? [String: String]() // ここは存在するとみなしていいと思うが安全のため
                 if data.keys.contains(idForSearch) { // 含まれていれば
                     SVProgressHUD.showError(withStatus: "そのidは使われています")
                     return

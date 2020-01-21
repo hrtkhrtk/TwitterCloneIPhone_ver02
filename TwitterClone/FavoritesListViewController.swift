@@ -80,8 +80,6 @@ class FavoritesListViewController: UIViewController, UITableViewDataSource, UITa
                     if self.postRefObserving == false {
                         Database.database().reference().child("users").child(user.uid).child("favorites_list").observe(.value, with: { snapshotInside in
                             self.postArray.removeAll()
-                            // TableViewを再表示する
-                            //self.tableView.reloadData()
                             
                             // これが必要なのか不明
                             for favoriteElement in self.favoritesList {
@@ -97,33 +95,6 @@ class FavoritesListViewController: UIViewController, UITableViewDataSource, UITa
                             }
                             
                             for favorite_element in favorites_list {
-//                                Database.database().reference().child("posts").child(favorite_element["user_id"]!).child(favorite_element["post_id"]!).observeSingleEvent(of: .value, with: { (snapshotInsideInside) in
-//                                    let mapInsideInside = snapshotInsideInside.value as! [String: Any] // ここは必ず存在
-//                                    let text = (mapInsideInside["text"] as? String) ?? ""
-//                                    let created_at = (mapInsideInside["created_at"] as! Int64) // ここは必ず存在
-//                                    let favoriters_list = (mapInsideInside["favoriters_list"] as? [String]) ?? [String]()
-//
-//                                    Database.database().reference().child("users").child(favorite_element["user_id"]!).observeSingleEvent(of: .value, with: { (snapshotInsideInsideInside) in
-//                                        let mapInsideInsideInside = snapshotInsideInsideInside.value as! [String: Any] // ここは必ず存在
-//                                        let iconImageString = mapInsideInsideInside["icon_image"] as! String
-//                                        let nickname = mapInsideInsideInside["nickname"] as! String
-//
-//                                        let postDataClass = PostData(nickname:nickname,
-//                                                                     text:text,
-//                                                                     createdAt:created_at,
-//                                                                     favoritersList:favoriters_list,
-//                                                                     userId:favorite_element["user_id"]!,
-//                                                                     postId:favorite_element["post_id"]!,
-//                                                                     iconImageString:iconImageString,
-//                                                                     myId:user.uid)
-//                                        self.postArray.append(postDataClass)
-//                                        self.postArray.sort(by: {$0.createdAt! > $1.createdAt!})
-//
-//                                        // TableViewを再表示する
-//                                        self.tableView.reloadData()
-//                                    })
-//                                })
-                                
                                 // ここのプログラムは、変化するのはfavoriters_listだけであると仮定して書かれている
                                 Database.database().reference().child("posts").child(favorite_element["user_id"]!).child(favorite_element["post_id"]!).observe(.value, with: { snapshotInsideInside in
                                     let mapInsideInside = snapshotInsideInside.value as! [String: Any] // ここは必ず存在
@@ -164,7 +135,6 @@ class FavoritesListViewController: UIViewController, UITableViewDataSource, UITa
                                         // TableViewを再表示する
                                         self.tableView.reloadData()
                                     } else {
-                                        
                                         Database.database().reference().child("users").child(favorite_element["user_id"]!).observeSingleEvent(of: .value, with: { (snapshotInsideInsideInside) in
                                             let mapInsideInsideInside = snapshotInsideInsideInside.value as! [String: Any] // ここは必ず存在
                                             let iconImageString = mapInsideInsideInside["icon_image"] as! String
@@ -185,11 +155,6 @@ class FavoritesListViewController: UIViewController, UITableViewDataSource, UITa
                                             self.tableView.reloadData()
                                         })
                                     }
-
-                                    //self.postArray.sort(by: {$0.createdAt! > $1.createdAt!}) // self.postArray.appendよりも先に実行されてしまう。
-                                    
-                                    // TableViewを再表示する
-                                    //self.tableView.reloadData() // self.postArray.appendよりも先に実行されてしまう。
                                 })
                             }
                         })

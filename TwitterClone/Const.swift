@@ -14,15 +14,6 @@ struct Const {
     static let id__iconImage_from_SettingView = 3
     static let id__backgroundImage_from_SettingView = 4
     
-    static let item_id__nav_posts = 1
-    static let item_id__nav_search_posts = 2
-    static let item_id__nav_search_users = 3
-    static let item_id__nav_followings_list = 4
-    static let item_id__nav_followers_list = 5
-    static let item_id__nav_favorites_list = 6
-    static let item_id__nav_my_posts = 7
-    static let item_id__nav_policy = 8
-    
     static func getDateTime(time:Int64, format:String) -> String {
         let formatter = DateFormatter()
         formatter.dateFormat = format

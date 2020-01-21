@@ -18,12 +18,9 @@ class SearchPostsViewController: UIViewController, UITableViewDataSource, UITabl
     var searchedPostRefObserving = false
     var allPostRefObserving = false
     
-    //var currentUserUid = ""
     var previousSearchText = ""
     var postsListSearchedKeys = [[String: String]]()
     var postsListAllKeys = [String]()
-    
-//    var isAllPostsDataSet = false // setは過去分詞
     
     @IBOutlet weak var searchTextField: UITextField!
     @IBOutlet weak var tableView: UITableView!
@@ -44,12 +41,8 @@ class SearchPostsViewController: UIViewController, UITableViewDataSource, UITabl
                 self.showAllPosts()
                 SVProgressHUD.showError(withStatus: "入力して下さい")
             } else {
-                //self.deleteAllPostsWithRemovingObservers()
-                
                 // オブザーバーを削除する
                 if self.allPostRefObserving == true {
-                    //Database.database().reference().child("posts").removeAllObservers()
-                    
                     for user_id in self.postsListAllKeys {
                         Database.database().reference().child("posts").child(user_id).removeAllObservers()
                     }
@@ -62,13 +55,9 @@ class SearchPostsViewController: UIViewController, UITableViewDataSource, UITabl
                 
                 let user = Auth.auth().currentUser
                 if let user = user {
-                    //self.currentUserUid = user.uid
-                    
                     if (self.searchedPostRefObserving == false) || (searchText != self.previousSearchText) {
                         // オブザーバーを削除する
                         if self.searchedPostRefObserving == true {
-                            //Database.database().reference().child("posts").removeAllObservers()
-                            
                             for refDic in self.postsListSearchedKeys {
                                 Database.database().reference().child("posts").child(refDic["userId"]!).child(refDic["postId"]!).removeAllObservers()
                             }
@@ -79,10 +68,8 @@ class SearchPostsViewController: UIViewController, UITableViewDataSource, UITabl
                             self.searchedPostRefObserving = false
                         }
                         
-                        //Database.database().reference().child("posts").observe(.value, with: { (snapshot) in
                         Database.database().reference().child("posts").observeSingleEvent(of: .value, with: { (snapshot) in
                             self.postArray.removeAll()
-                            //self.isAllPostsDataSet = false
                             
                             let posts_list_all = (snapshot.value as? [String: [String: [String: Any]]]) ?? [String: [String: [String: Any]]]() // ここはnullかも
                             
@@ -94,22 +81,11 @@ class SearchPostsViewController: UIViewController, UITableViewDataSource, UITabl
                                     
                                     if text.contains(searchText) { // ここで検索している（ここが検索の全て）。改善の余地があるかも。 // 現状だと大文字と小文字を区別
                                         let created_at = (post_each["created_at"] as! Int64) // ここは必ず存在
-//                                        let favoriters_list = (post_each["favoriters_list"] as? [String]) ?? [String]()
                                         
                                         Database.database().reference().child("users").child(user_id).observeSingleEvent(of: .value, with: { (snapshotInside) in
                                             let mapInside = snapshotInside.value as! [String: Any] // ここは必ず存在
                                             let iconImageString = mapInside["icon_image"] as! String
                                             let nickname = mapInside["nickname"] as! String
-                                            
-//                                            let postDataClass = PostData(nickname:nickname,
-//                                                                         text:text,
-//                                                                         createdAt:created_at,
-//                                                                         favoritersList:favoriters_list,
-//                                                                         userId:user_id,
-//                                                                         postId:post_id,
-//                                                                         iconImageString:iconImageString,
-//                                                                         myId:user.uid)
-//                                            self.postArray.append(postDataClass)
                                             
                                             let refDic = ["userId": user_id, "postId": post_id]
                                             self.postsListSearchedKeys.append(refDic)
@@ -144,7 +120,6 @@ class SearchPostsViewController: UIViewController, UITableViewDataSource, UITabl
                                                     
                                                     // 削除したところに更新済みのデータを追加する // ここではsortしない
                                                     self.postArray.insert(postDataClassNew, at: index)
-                                                    //self.postArray.sort(by: {$0.createdAt! > $1.createdAt!})
                                                     
                                                     // TableViewを再表示する
                                                     self.tableView.reloadData()
@@ -163,16 +138,8 @@ class SearchPostsViewController: UIViewController, UITableViewDataSource, UITabl
                                                     
                                                     // TableViewを再表示する
                                                     self.tableView.reloadData()
-                                                    
-                                                    //self.isAllPostsDataSet = false
                                                 }
                                             })
-//                                            self.postArray.sort(by: {$0.createdAt! > $1.createdAt!})
-//
-//                                            // TableViewを再表示する
-//                                            self.tableView.reloadData()
-//
-//                                            //self.isAllPostsDataSet = false
                                         })
                                     }
                                 }
@@ -307,21 +274,13 @@ class SearchPostsViewController: UIViewController, UITableViewDataSource, UITabl
     private func showAllPosts() {
         let user = Auth.auth().currentUser
         if let user = user { // 別にログインしている必要性はないが // let postDataClassで必要だった
-            //self.currentUserUid = user.uid
-            
-//            self.postArray.removeAll() // たぶん冗長 // viewWillAppearで必要だからそんなことなかった
-            // TableViewを再表示する
-//            self.tableView.reloadData() // たぶん冗長 // viewWillAppearで必要だからそんなことなかった
-            
             if self.allPostRefObserving == false {
-                //Database.database().reference().child("posts").observe(.value, with: { (snapshot) in
                 Database.database().reference().child("posts").observeSingleEvent(of: .value, with: { (snapshot) in
                     self.postArray.removeAll()
                     
                     let posts_list_all = (snapshot.value as? [String: [String: [String: Any]]]) ?? [String: [String: [String: Any]]]() // ここはnullかも
                     
                     for user_id in posts_list_all.keys {
-                        //let posts_list_each = posts_list_all[user_id] as! [String: [String: Any]] // ここは必ず存在
                         let posts_list_each = posts_list_all[user_id]! // ここは必ず存在
                         
                         Database.database().reference().child("users").child(user_id).observeSingleEvent(of: .value, with: { (snapshotInside) in
@@ -330,7 +289,6 @@ class SearchPostsViewController: UIViewController, UITableViewDataSource, UITabl
                             let nickname = mapInside["nickname"] as! String
                             
                             for post_id in posts_list_each.keys {
-                                //let post_each = posts_list_each[post_id] as! [String: Any] // ここは必ず存在
                                 let post_each = posts_list_each[post_id]! // ここは必ず存在
                                 let text = (post_each["text"] as? String) ?? ""
                                 let created_at = (post_each["created_at"] as! Int64) // ここは必ず存在
@@ -345,7 +303,6 @@ class SearchPostsViewController: UIViewController, UITableViewDataSource, UITabl
                                                              iconImageString:iconImageString,
                                                              myId:user.uid)
                                 self.postArray.append(postDataClass)
-                                //print("testn12")
                                 self.postArray.sort(by: {$0.createdAt! > $1.createdAt!})
                                 
                                 // TableViewを再表示する
@@ -395,7 +352,6 @@ class SearchPostsViewController: UIViewController, UITableViewDataSource, UITabl
                                 
                                 // 削除したところに更新済みのデータを追加する // ここではsortしない
                                 self.postArray.insert(postDataClassNew, at: index)
-                                //self.postArray.sort(by: {$0.createdAt! > $1.createdAt!})
                                 
                                 // TableViewを再表示する
                                 self.tableView.reloadData()
@@ -414,13 +370,10 @@ class SearchPostsViewController: UIViewController, UITableViewDataSource, UITabl
     private func deleteAllPostsWithRemovingObservers() {
         // テーブルをクリアする
         self.postArray.removeAll()
-        //print("testn15")
         self.tableView.reloadData()
         
         // オブザーバーを削除する
         if self.allPostRefObserving == true {
-            //Database.database().reference().child("posts").removeAllObservers()
-            
             for user_id in self.postsListAllKeys {
                 Database.database().reference().child("posts").child(user_id).removeAllObservers()
             }
@@ -435,13 +388,10 @@ class SearchPostsViewController: UIViewController, UITableViewDataSource, UITabl
     private func deleteSearchedPostsWithRemovingObservers() {
         // テーブルをクリアする
         self.postArray.removeAll()
-        //print("testn16")
         self.tableView.reloadData()
         
         // オブザーバーを削除する
         if self.searchedPostRefObserving == true {
-            //Database.database().reference().child("posts").removeAllObservers()
-            
             for refDic in self.postsListSearchedKeys {
                 Database.database().reference().child("posts").child(refDic["userId"]!).child(refDic["postId"]!).removeAllObservers()
             }

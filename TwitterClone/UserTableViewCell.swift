@@ -39,14 +39,10 @@ class UserTableViewCell: UITableViewCell {
             self.followButton.setTitle("follow", for: .normal)
         }
         
-        //print(userData.idForSearch) // test
-        //print("test21")
         if userData.isMe {
             self.followButton.isHidden = true
-            //print("test22")
         } else {
             self.followButton.isHidden = false
         }
-        //print("test23")
     }
 }

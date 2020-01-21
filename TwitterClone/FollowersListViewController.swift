@@ -80,7 +80,7 @@ class FollowersListViewController: UIViewController, UITableViewDataSource, UITa
                                 // 差し替えるため一度削除する
                                 self.userArray.remove(at: index)
                                 
-                                var userDataClassNew = UserData(nickname: userDataClassOld.nickname!,
+                                let userDataClassNew = UserData(nickname: userDataClassOld.nickname!,
                                                                 idForSearch: userDataClassOld.idForSearch!,
                                                                 selfIntroduction: userDataClassOld.selfIntroduction!,
                                                                 userId: userDataClassOld.userId!,
